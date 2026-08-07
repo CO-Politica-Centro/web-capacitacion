@@ -15,14 +15,14 @@ type LeccionPageProps = {
 };
 
 export function generateStaticParams() {
-  return cursos
-    .filter((curso) => curso.status === "publicado")
-    .flatMap((curso) =>
-      curso.leccionesMeta.map((leccion) => ({
-        slug: curso.slug,
-        leccion: leccion.slug,
-      })),
-    );
+  const params: { slug: string; leccion: string }[] = [];
+  for (const curso of cursos) {
+    if (curso.status !== "publicado") continue;
+    for (const leccion of curso.leccionesMeta) {
+      params.push({ slug: curso.slug, leccion: leccion.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({

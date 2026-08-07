@@ -16,7 +16,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "react:doctor": "react-doctor . --verbose",
+    "react:doctor": "react-doctor . --verbose --yes",
     "ci": "pnpm run lint && pnpm run typecheck && pnpm run format:check && pnpm run test && pnpm run build"
   },
   "dependencies": {

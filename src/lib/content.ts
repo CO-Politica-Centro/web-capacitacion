@@ -66,10 +66,6 @@ export function getRamaById(id: string) {
   return ramas.find((rama) => rama.id === id);
 }
 
-export function getRamaBySlug(slug: string) {
-  return ramas.find((rama) => rama.slug === slug);
-}
-
 export function getCursos(filters: CursoFilters = {}): Curso[] {
   return cursos.filter((curso) => {
     const rama = getRamaById(curso.ramaId);

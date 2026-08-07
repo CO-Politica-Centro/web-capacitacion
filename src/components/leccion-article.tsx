@@ -26,8 +26,14 @@ export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
       ) : null}
 
       <div className="leccion-prose mt-10 space-y-8">
-        {leccion.sections.map((section, index) => (
-          <section key={`${section.heading ?? "s"}-${index}`}>
+        {leccion.sections.map((section) => (
+          <section
+            key={
+              section.heading
+                ? `${leccion.slug}:${section.heading}`
+                : `${leccion.slug}:${section.body.slice(0, 48)}`
+            }
+          >
             {section.heading ? (
               <h2 className="mb-3 text-2xl font-semibold">{section.heading}</h2>
             ) : null}

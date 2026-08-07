@@ -9,20 +9,20 @@ type CatalogFiltersProps = {
   activeRama?: string;
 };
 
+function buildHref(via?: string, rama?: string) {
+  const params = new URLSearchParams();
+  if (via) params.set("via", via);
+  if (rama) params.set("rama", rama);
+  const q = params.toString();
+  return q ? `/cursos?${q}` : "/cursos";
+}
+
 export function CatalogFilters({
   vias,
   ramas,
   activeVia,
   activeRama,
 }: CatalogFiltersProps) {
-  const buildHref = (via?: string, rama?: string) => {
-    const params = new URLSearchParams();
-    if (via) params.set("via", via);
-    if (rama) params.set("rama", rama);
-    const q = params.toString();
-    return q ? `/cursos?${q}` : "/cursos";
-  };
-
   const ramasForVia = activeVia
     ? ramas.filter((r) => r.viaId === activeVia)
     : ramas;

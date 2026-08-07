@@ -25,6 +25,15 @@ type RecursosPageProps = {
   searchParams: Promise<{ tipo?: string; rama?: string; via?: string }>;
 };
 
+function hrefFor(next: { tipo?: string; via?: string; rama?: string }) {
+  const q = new URLSearchParams();
+  if (next.tipo) q.set("tipo", next.tipo);
+  if (next.via) q.set("via", next.via);
+  if (next.rama) q.set("rama", next.rama);
+  const s = q.toString();
+  return s ? `/recursos?${s}` : "/recursos";
+}
+
 export default async function RecursosPage({
   searchParams,
 }: RecursosPageProps) {
@@ -36,15 +45,6 @@ export default async function RecursosPage({
   const rama = params.rama || undefined;
   const recursos = getRecursos({ tipo, via, rama });
   const vias = getVias();
-
-  const hrefFor = (next: { tipo?: string; via?: string; rama?: string }) => {
-    const q = new URLSearchParams();
-    if (next.tipo) q.set("tipo", next.tipo);
-    if (next.via) q.set("via", next.via);
-    if (next.rama) q.set("rama", next.rama);
-    const s = q.toString();
-    return s ? `/recursos?${s}` : "/recursos";
-  };
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-16 lg:py-20">

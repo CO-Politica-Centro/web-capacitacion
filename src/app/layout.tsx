@@ -17,6 +17,17 @@ const body = Source_Sans_3({
   subsets: ["latin"],
 });
 
+function siteMetadataBase(): URL {
+  const fallback = "http://localhost:3000";
+  const raw = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!raw) return new URL(fallback);
+  try {
+    return new URL(raw);
+  } catch {
+    return new URL(fallback);
+  }
+}
+
 export const metadata: Metadata = {
   title: {
     default: "Capacitación política — CO Politica Centro",
@@ -24,9 +35,7 @@ export const metadata: Metadata = {
   },
   description:
     "Escuela abierta de CO Politica Centro: concientización política y formación práctica con rutas guiadas para Colombia.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: siteMetadataBase(),
   icons: {
     icon: [{ url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" }],
     apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
