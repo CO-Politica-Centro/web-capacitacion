@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #f7f4eb;
   --foreground: #1a1f16;
@@ -9,6 +11,17 @@
   --muted: #5c6554;
   --surface: #fffdf7;
   --ring: #1a1f16;
+}
+
+.dark {
+  --background: #121510;
+  --foreground: #f2efe6;
+  --accent: #e0b020;
+  --accent-soft: #c9a227;
+  --brand-green: #6db87a;
+  --muted: #a8b09e;
+  --surface: #1c211a;
+  --ring: #f2efe6;
 }
 
 @theme inline {
@@ -38,6 +51,21 @@ body {
     var(--background);
   color: var(--foreground);
   font-family: var(--font-source), ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark body {
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 10% -10%,
+      rgb(224 176 32 / 0.14),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 90% 0%,
+      rgb(109 184 122 / 0.1),
+      transparent
+    ),
+    var(--background);
 }
 
 h1,
@@ -71,4 +99,25 @@ h3 {
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--foreground);
+}
+
+/* Firefox: solid surface under translucent header chrome */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .site-chrome {
+    background-color: var(--surface);
+  }
+}
+
+.site-chrome {
+  background-color: color-mix(in srgb, var(--surface) 92%, transparent);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
