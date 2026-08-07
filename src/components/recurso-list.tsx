@@ -19,7 +19,9 @@ type RecursoListProps = {
 
 export function RecursoList({ recursos }: RecursoListProps) {
   if (recursos.length === 0) {
-    return <p className="text-muted text-sm">No hay recursos con ese filtro.</p>;
+    return (
+      <p className="text-muted text-sm">No hay recursos con ese filtro.</p>
+    );
   }
 
   return (
@@ -40,9 +42,7 @@ export function RecursoList({ recursos }: RecursoListProps) {
                 <Link
                   href={recurso.href}
                   className="hover:text-brand-green underline-offset-4 hover:underline"
-                  {...(external
-                    ? { target: "_blank", rel: "noreferrer" }
-                    : {})}
+                  {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
                 >
                   {recurso.titulo}
                   {external ? " ↗" : ""}
@@ -55,7 +55,7 @@ export function RecursoList({ recursos }: RecursoListProps) {
               {recurso.resumen}
             </p>
             {recurso.cuerpo ? (
-              <div className="text-foreground/90 mt-4 max-w-[65ch] space-y-2 text-sm leading-relaxed [&_strong]:font-semibold [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5">
+              <div className="text-foreground/90 mt-4 max-w-[65ch] space-y-2 text-sm leading-relaxed [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
                 <ReactMarkdown>{recurso.cuerpo}</ReactMarkdown>
               </div>
             ) : null}

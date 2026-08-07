@@ -18,11 +18,11 @@ Web de **capacitación política** del movimiento **CO Politica Centro** (Colomb
 
 ## Idioma
 
-| Canal | Idioma |
-| --- | --- |
-| UI / README / docs | Español |
-| Commits | Inglés (Conventional Commits) |
-| Chat con el usuario | Español |
+| Canal               | Idioma                        |
+| ------------------- | ----------------------------- |
+| UI / README / docs  | Español                       |
+| Commits             | Inglés (Conventional Commits) |
+| Chat con el usuario | Español                       |
 
 ## Stack rápido
 

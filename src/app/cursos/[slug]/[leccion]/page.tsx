@@ -3,11 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LeccionArticle } from "@/components/leccion-article";
 import { cursos } from "@/content/cursos";
-import {
-  getCursoBySlug,
-  getLeccion,
-  getLeccionNav,
-} from "@/lib/content";
+import { getCursoBySlug, getLeccion, getLeccionNav } from "@/lib/content";
 
 type LeccionPageProps = {
   params: Promise<{ slug: string; leccion: string }>;

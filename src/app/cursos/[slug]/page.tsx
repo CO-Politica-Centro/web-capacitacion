@@ -3,11 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CursoStatusBadge } from "@/components/curso-status-badge";
 import { cursos } from "@/content/cursos";
-import {
-  getCursoBySlug,
-  getRamaById,
-  getViaBySlug,
-} from "@/lib/content";
+import { getCursoBySlug, getRamaById, getViaBySlug } from "@/lib/content";
 
 type CursoPageProps = {
   params: Promise<{ slug: string }>;
@@ -42,7 +38,10 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
   return (
     <div className="mx-auto max-w-5xl px-6 py-16 lg:py-20">
       <nav className="text-muted mb-8 text-sm">
-        <Link href="/cursos" className="hover:text-foreground underline-offset-4 hover:underline">
+        <Link
+          href="/cursos"
+          className="hover:text-foreground underline-offset-4 hover:underline"
+        >
           Cursos
         </Link>
         {via ? (
@@ -60,7 +59,7 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
 
       <div className="max-w-2xl space-y-4">
         <CursoStatusBadge status={curso.status} />
-        <h1 className="text-4xl font-semibold leading-tight">{curso.titulo}</h1>
+        <h1 className="text-4xl leading-tight font-semibold">{curso.titulo}</h1>
         <p className="text-muted text-lg leading-relaxed">{curso.resumen}</p>
         <p className="text-muted text-sm">
           {rama?.nombre} · {curso.duracionMin} min ·{" "}
@@ -89,9 +88,7 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
                 className="border-foreground/10 flex flex-wrap items-baseline justify-between gap-2 border-b py-3"
               >
                 <div>
-                  <span className="text-muted text-xs">
-                    {leccion.orden}.{" "}
-                  </span>
+                  <span className="text-muted text-xs">{leccion.orden}. </span>
                   {published ? (
                     <Link
                       href={`/cursos/${curso.slug}/${leccion.slug}`}
@@ -103,7 +100,9 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
                     <span className="font-semibold">{leccion.titulo}</span>
                   )}
                 </div>
-                <span className="text-muted text-xs">{leccion.minutos} min</span>
+                <span className="text-muted text-xs">
+                  {leccion.minutos} min
+                </span>
               </li>
             ))}
         </ol>
@@ -127,7 +126,7 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
         )}
         <Link
           href="/cursos"
-          className="border-foreground/20 bg-surface rounded-md border px-5 py-2.5 text-sm font-semibold transition hover:border-accent"
+          className="border-foreground/20 bg-surface hover:border-accent rounded-md border px-5 py-2.5 text-sm font-semibold transition"
         >
           Ver catálogo
         </Link>

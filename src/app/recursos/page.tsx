@@ -25,7 +25,9 @@ type RecursosPageProps = {
   searchParams: Promise<{ tipo?: string; rama?: string; via?: string }>;
 };
 
-export default async function RecursosPage({ searchParams }: RecursosPageProps) {
+export default async function RecursosPage({
+  searchParams,
+}: RecursosPageProps) {
   const params = await searchParams;
   const tipo = tipos.includes(params.tipo as RecursoTipo)
     ? (params.tipo as RecursoTipo)
@@ -35,11 +37,7 @@ export default async function RecursosPage({ searchParams }: RecursosPageProps) 
   const recursos = getRecursos({ tipo, via, rama });
   const vias = getVias();
 
-  const hrefFor = (next: {
-    tipo?: string;
-    via?: string;
-    rama?: string;
-  }) => {
+  const hrefFor = (next: { tipo?: string; via?: string; rama?: string }) => {
     const q = new URLSearchParams();
     if (next.tipo) q.set("tipo", next.tipo);
     if (next.via) q.set("via", next.via);

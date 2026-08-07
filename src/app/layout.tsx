@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s · Capacitación Centro",
   },
   description:
-    "Plataforma de capacitación política del movimiento de centro en Colombia. Contenido educativo de alta calidad en construcción.",
+    "Escuela abierta de CO Politica Centro: concientización política y formación práctica con rutas guiadas para Colombia.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
@@ -37,14 +37,32 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <footer className="border-foreground/10 text-muted border-t px-6 py-8 text-sm">
-          <div className="mx-auto flex max-w-5xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p>Capacitación política — CO Politica Centro.</p>
-            <a
-              className="hover:text-foreground underline-offset-4 hover:underline"
-              href="mailto:rafaelsolanov@web.de"
-            >
-              rafaelsolanov@web.de
-            </a>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <a
+                className="hover:text-foreground underline-offset-4 hover:underline"
+                href="https://web-portal-co-politica.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Portal
+              </a>
+              <a
+                className="hover:text-foreground underline-offset-4 hover:underline"
+                href="https://beacons.ai/centropd"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Comunidades
+              </a>
+              <a
+                className="hover:text-foreground underline-offset-4 hover:underline"
+                href="mailto:rafaelsolanov@web.de"
+              >
+                Contacto
+              </a>
+            </div>
           </div>
         </footer>
         <Analytics />

@@ -22,10 +22,15 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
         <p className="text-brand-green text-sm font-semibold tracking-[0.18em] uppercase">
           Ruta · {via.nombre}
         </p>
-        <h2 id={`ruta-${via.slug}`} className="text-3xl font-semibold sm:text-4xl">
+        <h2
+          id={`ruta-${via.slug}`}
+          className="text-3xl font-semibold sm:text-4xl"
+        >
           {via.tagline}
         </h2>
-        <p className="text-muted text-base leading-relaxed">{via.descripcion}</p>
+        <p className="text-muted text-base leading-relaxed">
+          {via.descripcion}
+        </p>
         {nextPublished ? (
           <Link
             href={`/cursos/${nextPublished.curso.slug}`}
@@ -36,13 +41,13 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
         ) : null}
       </div>
 
-      <ol className="relative space-y-0 border-l border-foreground/15 ml-3">
+      <ol className="border-foreground/15 relative ml-3 space-y-0 border-l">
         {items.map((item, index) => {
           const published = item.curso.status === "publicado";
           return (
             <li
               key={item.curso.slug}
-              className="ruta-step relative pl-8 pb-10 last:pb-0"
+              className="ruta-step relative pb-10 pl-8 last:pb-0"
               style={{ animationDelay: `${index * 70}ms` }}
             >
               <span
@@ -79,7 +84,9 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
                     Abrir curso · {item.curso.duracionMin} min
                   </Link>
                 ) : (
-                  <span className="text-muted">Próximamente · outline disponible</span>
+                  <span className="text-muted">
+                    Próximamente · outline disponible
+                  </span>
                 )}
                 {!published ? (
                   <>

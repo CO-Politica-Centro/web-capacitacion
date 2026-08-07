@@ -2,12 +2,7 @@ import type { Metadata } from "next";
 import { CatalogFilters } from "@/components/catalog-filters";
 import { CursoCard } from "@/components/curso-card";
 import { ramas } from "@/content/ramas";
-import {
-  getCursos,
-  getRamaById,
-  getVias,
-  isViaSlug,
-} from "@/lib/content";
+import { getCursos, getRamaById, getVias, isViaSlug } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Cursos",

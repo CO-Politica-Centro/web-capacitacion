@@ -53,14 +53,16 @@ export const recursos: Recurso[] = [
     tipo: "enlace",
     viaId: "practica",
     ramaId: "primeros-pasos",
-    resumen: "Directorio actualizado de canales y puntos de encuentro del movimiento.",
+    resumen:
+      "Directorio actualizado de canales y puntos de encuentro del movimiento.",
     href: "https://beacons.ai/centropd",
   },
   {
     id: "enlace-portal",
     titulo: "Portal del movimiento",
     tipo: "enlace",
-    resumen: "Sitio oficial del movimiento de centro (propuestas, equipo, contacto).",
+    resumen:
+      "Sitio oficial del movimiento de centro (propuestas, equipo, contacto).",
     href: "https://web-portal-co-politica.vercel.app",
   },
   {
@@ -90,7 +92,8 @@ export const recursos: Recurso[] = [
     tipo: "guia",
     ramaId: "ciudadania",
     viaId: "concientizacion",
-    resumen: "Estructura mínima para pedir información o actuación a una autoridad.",
+    resumen:
+      "Estructura mínima para pedir información o actuación a una autoridad.",
     cuerpo: `Incluye: destinatario, identificación, hechos claros, petición concreta, fundamentos breves, notificación y anexos. Sé específico en lo que pides y en el plazo razonable.`,
   },
   {

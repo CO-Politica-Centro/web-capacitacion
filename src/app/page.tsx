@@ -23,7 +23,7 @@ export default function HomePage() {
           <ViaChooser vias={vias} className="pt-2" />
         </div>
 
-        <div className="mt-24 grid gap-12 border-t border-foreground/10 pt-14 lg:grid-cols-2">
+        <div className="border-foreground/10 mt-24 grid gap-12 border-t pt-14 lg:grid-cols-2">
           {vias.map((via) => {
             const ramas = getRamasByVia(via.slug);
             return (

@@ -78,9 +78,9 @@ describe("content helpers", () => {
 
   it("filtra recursos sin romper query vacía", () => {
     expect(getRecursos().length).toBeGreaterThanOrEqual(8);
-    expect(getRecursos({ tipo: "glosario" }).some((r) => r.id === "glosario-base")).toBe(
-      true,
-    );
+    expect(
+      getRecursos({ tipo: "glosario" }).some((r) => r.id === "glosario-base"),
+    ).toBe(true);
     expect(getRecursos({ via: "practica" }).length).toBeGreaterThan(0);
   });
 });

@@ -63,7 +63,11 @@ export function getCursos(filters: CursoFilters = {}): Curso[] {
     const rama = getRamaById(curso.ramaId);
     if (!rama) return false;
     if (filters.via && rama.viaId !== filters.via) return false;
-    if (filters.rama && rama.slug !== filters.rama && rama.id !== filters.rama) {
+    if (
+      filters.rama &&
+      rama.slug !== filters.rama &&
+      rama.id !== filters.rama
+    ) {
       return false;
     }
     return true;
