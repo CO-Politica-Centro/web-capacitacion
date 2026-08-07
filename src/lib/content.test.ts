@@ -48,7 +48,8 @@ describe("content helpers", () => {
     expect(getCursoBySlug("centro-liberalismo-social")?.status).toBe(
       "publicado",
     );
-    expect(getCursoBySlug("decidir-en-publico")?.status).toBe("outline");
+    expect(getCursoBySlug("decidir-en-publico")?.status).toBe("publicado");
+    expect(getCursos().every((c) => c.status === "publicado")).toBe(true);
   });
 
   it("carga lecciones semilla con secciones", () => {
@@ -60,10 +61,13 @@ describe("content helpers", () => {
     expect(leccion?.titulo).toMatch(/ramas/);
 
     expect(getLeccionesForCurso("centro-liberalismo-social")).toHaveLength(4);
-    expect(getLeccion("participar-sin-candidato", "veeduria")?.sections.length).toBeGreaterThan(
-      0,
+    expect(
+      getLeccion("participar-sin-candidato", "veeduria")?.sections.length,
+    ).toBeGreaterThan(0);
+    expect(getLeccionesForCurso("armar-sostener-nodo")).toHaveLength(5);
+    expect(getLeccion("decidir-en-publico", "etica-liderazgo")?.titulo).toMatch(
+      /Ética/,
     );
-    expect(getLeccion("decidir-en-publico", "etica-liderazgo")).toBeUndefined();
   });
 
   it("navega prev/next dentro del curso", () => {

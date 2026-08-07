@@ -1,8 +1,11 @@
 import { cursos } from "@/content/cursos";
+import { leccionesArmarSostenerNodo } from "@/content/lecciones/armar-sostener-nodo";
 import { leccionesCentroLiberalismoSocial } from "@/content/lecciones/centro-liberalismo-social";
+import { leccionesDecidirEnPublico } from "@/content/lecciones/decidir-en-publico";
 import { leccionesDeInteresadoAActivo } from "@/content/lecciones/de-interesado-a-activo";
 import { leccionesEstadoColombiano } from "@/content/lecciones/estado-colombiano";
 import { leccionesLeerPoliticaSinRuido } from "@/content/lecciones/leer-politica-sin-ruido";
+import { leccionesMensajeClaroEtico } from "@/content/lecciones/mensaje-claro-etico";
 import { leccionesParticiparSinCandidato } from "@/content/lecciones/participar-sin-candidato";
 import { ramas } from "@/content/ramas";
 import { recursos } from "@/content/recursos";
@@ -25,6 +28,9 @@ const leccionesByCurso: Record<string, Leccion[]> = {
   "participar-sin-candidato": leccionesParticiparSinCandidato,
   "leer-politica-sin-ruido": leccionesLeerPoliticaSinRuido,
   "de-interesado-a-activo": leccionesDeInteresadoAActivo,
+  "armar-sostener-nodo": leccionesArmarSostenerNodo,
+  "mensaje-claro-etico": leccionesMensajeClaroEtico,
+  "decidir-en-publico": leccionesDecidirEnPublico,
 };
 
 const rutaOrder: Record<ViaSlug, string[]> = {

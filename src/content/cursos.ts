@@ -233,7 +233,7 @@ export const cursos: Curso[] = [
     ],
     nivel: "intermedio",
     duracionMin: 50,
-    status: "outline",
+    status: "publicado",
     leccionesMeta: [
       {
         slug: "reunion-util",
@@ -280,7 +280,7 @@ export const cursos: Curso[] = [
     ],
     nivel: "intermedio",
     duracionMin: 45,
-    status: "outline",
+    status: "publicado",
     leccionesMeta: [
       {
         slug: "pitch-30s",
@@ -321,7 +321,7 @@ export const cursos: Curso[] = [
     ],
     nivel: "intermedio",
     duracionMin: 50,
-    status: "outline",
+    status: "publicado",
     leccionesMeta: [
       {
         slug: "etica-liderazgo",

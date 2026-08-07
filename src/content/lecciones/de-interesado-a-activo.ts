@@ -180,7 +180,7 @@ Estos cursos están en outline: ya puedes ver objetivos y lecciones planeadas.`,
     ],
     ejercicio: `Marca una de las tres opciones de 48 horas y escribe cuándo la harás (día y hora).`,
     siguientePaso: {
-      label: "Ver outline: armar y sostener un nodo",
+      label: "Siguiente curso: Armar y sostener un nodo",
       href: "/cursos/armar-sostener-nodo",
     },
   },
