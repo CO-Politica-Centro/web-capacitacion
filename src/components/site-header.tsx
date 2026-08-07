@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/cursos", label: "Cursos" },
   { href: "/recursos", label: "Recursos" },
-  { href: "/ruta", label: "Ruta" },
+  { href: "/ruta/concientizacion", label: "Ruta" },
 ] as const;
 
 const brandName = "Capacitación · Centro";

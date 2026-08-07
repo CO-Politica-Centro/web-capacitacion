@@ -13,7 +13,7 @@ export function ViaChooser({ vias, className }: ViaChooserProps) {
       {vias.map((via) => (
         <Link
           key={via.id}
-          href={`/ruta?via=${via.slug}`}
+          href={`/via/${via.slug}`}
           className={cn(
             "inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition",
             via.id === "concientizacion"

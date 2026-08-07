@@ -56,10 +56,16 @@ export default function HomePage() {
                 </ul>
                 <div className="flex flex-wrap gap-x-4 gap-y-2 pt-1">
                   <Link
-                    href={`/ruta?via=${via.slug}`}
+                    href={`/via/${via.slug}`}
                     className="text-brand-green inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
                   >
-                    Ver ruta de {via.nombre.toLowerCase()}
+                    Explorar vía
+                  </Link>
+                  <Link
+                    href={`/ruta/${via.slug}`}
+                    className="text-foreground inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
+                  >
+                    Ver ruta paso a paso
                   </Link>
                 </div>
               </section>

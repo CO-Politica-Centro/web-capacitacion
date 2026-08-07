@@ -6,6 +6,8 @@ export type RutaTimelineItem = {
   orden: number;
   rama: Rama;
   curso: Curso;
+  /** 0–1 fraction of lessons completed when progress is available */
+  progressRatio?: number;
 };
 
 type RutaTimelineProps = {
@@ -34,7 +36,7 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
         {nextPublished ? (
           <Link
             href={`/cursos/${nextPublished.curso.slug}`}
-            className="bg-foreground text-background hover:bg-brand-green inline-flex rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
           >
             Empezar: {nextPublished.curso.titulo}
           </Link>
@@ -44,6 +46,9 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
       <ol className="border-foreground/15 relative ml-3 space-y-0 border-l">
         {items.map((item, index) => {
           const published = item.curso.status === "publicado";
+          const ratio = item.progressRatio;
+          const hasProgress = typeof ratio === "number";
+          const done = hasProgress && ratio >= 1;
           return (
             <li
               key={item.curso.slug}
@@ -53,7 +58,11 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
               <span
                 className={cn(
                   "absolute top-1.5 -left-[5px] size-2.5 rounded-full",
-                  published ? "bg-brand-green" : "bg-foreground/25",
+                  done
+                    ? "bg-brand-green"
+                    : published
+                      ? "bg-accent"
+                      : "bg-foreground/25",
                 )}
                 aria-hidden
               />
@@ -75,6 +84,26 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
               <p className="text-muted mt-2 max-w-xl text-sm leading-relaxed">
                 {item.curso.resumen}
               </p>
+              {hasProgress && published ? (
+                <div className="mt-3 max-w-xs">
+                  <div
+                    className="bg-foreground/10 h-1.5 overflow-hidden rounded-full"
+                    role="progressbar"
+                    aria-valuenow={Math.round(ratio * 100)}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label={`Progreso del curso ${item.curso.titulo}`}
+                  >
+                    <div
+                      className="bg-brand-green h-full rounded-full transition-[width]"
+                      style={{ width: `${Math.round(ratio * 100)}%` }}
+                    />
+                  </div>
+                  <p className="text-muted mt-1 text-xs">
+                    {Math.round(ratio * 100)}% completado
+                  </p>
+                </div>
+              ) : null}
               <p className="mt-2 text-sm">
                 {published ? (
                   <Link
