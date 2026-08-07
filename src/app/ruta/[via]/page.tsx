@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { RutaTimeline } from "@/components/ruta-timeline";
+import { RutaTimelineWithProgress } from "@/components/ruta-timeline-with-progress";
 import {
   getCursoBySlug,
   getRamaById,
@@ -70,7 +70,7 @@ export default async function RutaViaPage({ params }: RutaViaPageProps) {
         })}
       </div>
 
-      <RutaTimeline via={activeVia} items={items} />
+      <RutaTimelineWithProgress via={activeVia} items={items} />
 
       <p className="text-muted mt-14 text-sm">
         Explora el{" "}

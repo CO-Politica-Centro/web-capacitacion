@@ -3,7 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LeccionArticle } from "@/components/leccion-article";
 import { cursos } from "@/content/cursos";
-import { getCursoBySlug, getLeccion, getLeccionNav } from "@/lib/content";
+import {
+  getCursoBySlug,
+  getLeccion,
+  getLeccionNav,
+  getRamaById,
+} from "@/lib/content";
 
 type LeccionPageProps = {
   params: Promise<{ slug: string; leccion: string }>;
@@ -40,6 +45,8 @@ export default async function LeccionPage({ params }: LeccionPageProps) {
   if (!curso || !leccion) notFound();
 
   const nav = getLeccionNav(slug, leccionSlug);
+  const rama = getRamaById(curso.ramaId);
+  const viaSlug = rama?.viaId ?? "concientizacion";
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-16 lg:py-20">
@@ -52,7 +59,7 @@ export default async function LeccionPage({ params }: LeccionPageProps) {
         </Link>
         {" · "}
         <Link
-          href="/ruta"
+          href={`/ruta/${viaSlug}`}
           className="hover:text-foreground underline-offset-4 hover:underline"
         >
           Ruta

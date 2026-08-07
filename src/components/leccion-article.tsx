@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import { LeccionNav } from "@/components/leccion-nav";
+import { LessonProgressToggle } from "@/components/lesson-progress-toggle";
 import { ProximoPaso } from "@/components/proximo-paso";
 import type { Leccion, LeccionMeta } from "@/content/types";
 
@@ -47,6 +48,12 @@ export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
           </div>
         </aside>
       ) : null}
+
+      <LessonProgressToggle
+        cursoSlug={leccion.cursoSlug}
+        leccionSlug={leccion.slug}
+        className="mt-10"
+      />
 
       {leccion.siguientePaso ? (
         <ProximoPaso paso={leccion.siguientePaso} />

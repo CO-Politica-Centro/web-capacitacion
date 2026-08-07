@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CursoLessonList } from "@/components/curso-lesson-list";
 import { CursoStatusBadge } from "@/components/curso-status-badge";
 import { cursos } from "@/content/cursos";
 import { getCursoBySlug, getRamaById, getViaBySlug } from "@/lib/content";
@@ -48,7 +49,7 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
           <>
             {" · "}
             <Link
-              href={`/ruta?via=${via.slug}`}
+              href={`/ruta/${via.slug}`}
               className="hover:text-foreground underline-offset-4 hover:underline"
             >
               Ruta {via.nombre}
@@ -78,55 +79,32 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
 
       <section className="mt-10 max-w-2xl">
         <h2 className="text-xl font-semibold">Lecciones</h2>
-        <ol className="mt-4 space-y-3">
-          {curso.leccionesMeta
-            .slice()
-            .sort((a, b) => a.orden - b.orden)
-            .map((leccion) => (
-              <li
-                key={leccion.slug}
-                className="border-foreground/10 flex flex-wrap items-baseline justify-between gap-2 border-b py-3"
-              >
-                <div>
-                  <span className="text-muted text-xs">{leccion.orden}. </span>
-                  {published ? (
-                    <Link
-                      href={`/cursos/${curso.slug}/${leccion.slug}`}
-                      className="font-semibold underline-offset-4 hover:underline"
-                    >
-                      {leccion.titulo}
-                    </Link>
-                  ) : (
-                    <span className="font-semibold">{leccion.titulo}</span>
-                  )}
-                </div>
-                <span className="text-muted text-xs">
-                  {leccion.minutos} min
-                </span>
-              </li>
-            ))}
-        </ol>
+        <CursoLessonList
+          cursoSlug={curso.slug}
+          lecciones={curso.leccionesMeta}
+          published={published}
+        />
       </section>
 
       <div className="mt-10 flex flex-wrap gap-3">
         {published && firstLesson ? (
           <Link
             href={`/cursos/${curso.slug}/${firstLesson.slug}`}
-            className="bg-foreground text-background hover:bg-brand-green rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
           >
             Empezar curso
           </Link>
         ) : (
           <Link
-            href={via ? `/ruta?via=${via.slug}` : "/ruta"}
-            className="bg-foreground text-background hover:bg-brand-green rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            href={via ? `/ruta/${via.slug}` : "/ruta/concientizacion"}
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
           >
             Volver a la ruta
           </Link>
         )}
         <Link
           href="/cursos"
-          className="border-foreground/20 bg-surface hover:border-accent rounded-md border px-5 py-2.5 text-sm font-semibold transition"
+          className="border-foreground/20 bg-surface hover:border-accent inline-flex min-h-11 items-center rounded-md border px-5 py-2.5 text-sm font-semibold transition"
         >
           Ver catálogo
         </Link>
