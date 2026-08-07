@@ -1,0 +1,68 @@
+import type { Rama } from "./types";
+
+export const ramas: Rama[] = [
+  {
+    id: "instituciones",
+    viaId: "concientizacion",
+    slug: "instituciones",
+    nombre: "Democracia e instituciones colombianas",
+    orden: 1,
+    resumen: "Cómo está organizado el Estado y quién decide qué.",
+  },
+  {
+    id: "ideologias",
+    viaId: "concientizacion",
+    slug: "ideologias",
+    nombre: "Ideologías y el centro",
+    orden: 2,
+    resumen: "Mapa de ideas y el liberalismo social como brújula.",
+  },
+  {
+    id: "ciudadania",
+    viaId: "concientizacion",
+    slug: "ciudadania",
+    nombre: "Ciudadanía, derechos y participación",
+    orden: 3,
+    resumen: "Formas de participar sin ser candidato.",
+  },
+  {
+    id: "medios",
+    viaId: "concientizacion",
+    slug: "medios",
+    nombre: "Medios, datos y desinformación",
+    orden: 4,
+    resumen: "Leer el debate público sin caer en el ruido.",
+  },
+  {
+    id: "primeros-pasos",
+    viaId: "practica",
+    slug: "primeros-pasos",
+    nombre: "Primeros pasos en política",
+    orden: 1,
+    resumen: "De interesado a activo: mitos, roles y primera semana.",
+  },
+  {
+    id: "organizacion",
+    viaId: "practica",
+    slug: "organizacion",
+    nombre: "Organización, militancia y territorio",
+    orden: 2,
+    resumen: "Armar y sostener un nodo con ritmo realista.",
+  },
+  {
+    id: "comunicacion",
+    viaId: "practica",
+    slug: "comunicacion",
+    nombre: "Comunicación política y discurso",
+    orden: 3,
+    resumen: "Mensaje claro, ético y útil en redes y cara a cara.",
+  },
+  {
+    id: "liderazgo",
+    viaId: "practica",
+    slug: "liderazgo",
+    nombre: "Liderazgo y decisión pública",
+    orden: 4,
+    resumen: "Priorizar, decidir y rendir cuentas (eje ESAP-lite).",
+  },
+];
