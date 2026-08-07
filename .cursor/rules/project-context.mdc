@@ -1,0 +1,34 @@
+---
+description: Contexto de la web de capacitación CO Politica Centro
+alwaysApply: true
+---
+
+# Contexto del proyecto — web-capacitacion
+
+Plataforma de **capacitación política** del movimiento **CO Politica Centro** (Colombia, liberalismo social). Org: [CO-Politica-Centro](https://github.com/CO-Politica-Centro). Hub de comunidades: [beacons.ai/centropd](https://beacons.ai/centropd).
+
+## Idioma y comunicación
+
+- **UI, copy, README y docs del repo:** español.
+- **Mensajes de commit:** inglés (Conventional Commits).
+- **Respuestas del agente en el chat:** español.
+
+## Principios de producto
+
+- Plantilla orientada a **contenido educativo de alta calidad** (cursos, recursos, rutas).
+- No inventar cursos, autores ni certificaciones que no existan.
+- Contacto publicidad: `rafaelsolanov@web.de`.
+- Tono: claro, serio, ciudadano — sin clickbait político.
+
+## Alcance técnico actual
+
+- Next.js App Router + React + TypeScript + Tailwind v4.
+- Utilidad `cn()` en `src/lib/utils.ts`.
+- CI: lint, typecheck, format, test, build (`pnpm run ci`).
+- Deploy: Vercel (`NEXT_PUBLIC_SITE_URL`).
+
+## Qué no hacer por defecto
+
+- No añadir auth, LMS completo, pagos ni CMS sin petición explícita.
+- No cambiar el branding a estilos genéricos de plantillas IA.
+- No tocar settings de la org desde este repo.
