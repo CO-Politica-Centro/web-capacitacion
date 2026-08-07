@@ -107,7 +107,9 @@ h3 {
 }
 
 /* Firefox: solid surface under translucent header chrome */
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+@supports not (
+  (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
+) {
   .site-chrome {
     background-color: var(--surface);
   }

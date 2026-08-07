@@ -60,28 +60,22 @@ function mapAuthError(error: unknown): string {
 export function AuthProvider({ children }: { children: ReactNode }) {
   const configured = isFirebaseConfigured();
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(configured);
+  const [ready, setReady] = useState(!configured);
 
   useEffect(() => {
-    if (!configured) {
-      setLoading(false);
-      return;
-    }
+    if (!configured) return;
     const auth = getFirebaseAuth();
-    if (!auth) {
-      setLoading(false);
-      return;
-    }
+    if (!auth) return;
     return onAuthStateChanged(auth, (next) => {
       setUser(next);
-      setLoading(false);
+      setReady(true);
     });
   }, [configured]);
 
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
-      loading,
+      loading: !ready,
       configured,
       async signIn(email, password) {
         const auth = getFirebaseAuth();
@@ -107,7 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await signOut(auth);
       },
     }),
-    [user, loading, configured],
+    [user, ready, configured],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

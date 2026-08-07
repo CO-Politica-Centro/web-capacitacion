@@ -21,7 +21,7 @@ export function SiteHeader() {
         <div
           className={cn(
             "site-chrome pointer-events-auto mx-auto flex max-w-5xl items-center justify-between gap-2 sm:gap-3",
-            "rounded-full border border-foreground/10 px-3 py-2 shadow-[0_8px_30px_rgb(0_0_0_/0.08)] backdrop-blur-md sm:px-5 sm:py-2.5",
+            "border-foreground/10 rounded-full border px-3 py-2 shadow-[0_8px_30px_rgb(0_0_0_/0.08)] backdrop-blur-md sm:px-5 sm:py-2.5",
           )}
         >
           <Link href="/" aria-label={brandName} className="min-h-11 shrink-0">

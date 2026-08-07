@@ -46,8 +46,9 @@ export function AuthForm({ mode, className }: AuthFormProps) {
     return (
       <p className="text-muted text-sm leading-relaxed">
         La autenticación no está configurada en este entorno. Añade las
-        variables <code className="text-foreground">NEXT_PUBLIC_FIREBASE_*</code>{" "}
-        (ver <code className="text-foreground">.env.example</code>).
+        variables{" "}
+        <code className="text-foreground">NEXT_PUBLIC_FIREBASE_*</code> (ver{" "}
+        <code className="text-foreground">.env.example</code>).
       </p>
     );
   }
@@ -104,11 +105,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
         disabled={pending}
         className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 w-full items-center justify-center rounded-md px-5 py-2.5 text-sm font-semibold transition disabled:opacity-60"
       >
-        {pending
-          ? "Espera…"
-          : isRegister
-            ? "Crear cuenta"
-            : "Iniciar sesión"}
+        {pending ? "Espera…" : isRegister ? "Crear cuenta" : "Iniciar sesión"}
       </button>
 
       <p className="text-muted text-sm">

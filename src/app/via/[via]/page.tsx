@@ -47,7 +47,9 @@ export default async function ViaHubPage({ params }: ViaPageProps) {
         <h1 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
           {via.tagline}
         </h1>
-        <p className="text-muted text-base leading-relaxed">{via.descripcion}</p>
+        <p className="text-muted text-base leading-relaxed">
+          {via.descripcion}
+        </p>
         <p className="text-muted text-sm">{via.audiencia}</p>
         <div className="flex flex-wrap gap-3 pt-2">
           <Link
@@ -65,7 +67,10 @@ export default async function ViaHubPage({ params }: ViaPageProps) {
         </div>
       </div>
 
-      <section className="mt-14 space-y-6 sm:mt-16" aria-labelledby="ramas-heading">
+      <section
+        className="mt-14 space-y-6 sm:mt-16"
+        aria-labelledby="ramas-heading"
+      >
         <h2 id="ramas-heading" className="text-2xl font-semibold">
           Ramas de esta vía
         </h2>

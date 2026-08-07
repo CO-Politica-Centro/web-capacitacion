@@ -1,11 +1,12 @@
 # web-capacitacion
 
-Plataforma de **capacitación política** de CO Politica Centro: dos vías (concientización y formación práctica), rutas guiadas, cursos y recursos.
+Plataforma de **capacitación política** de CO Politica Centro: dos vías (concientización y formación práctica), rutas guiadas, cursos, recursos y progreso opcional con cuenta.
 
 ## Stack
 
 - Next.js 16 (App Router) + React 19 + TypeScript
 - Tailwind CSS v4
+- Firebase Auth + Firestore (progreso de lecciones)
 - `react-markdown` para lecciones y recursos
 - Vitest, ESLint, Prettier, react-doctor
 - Vercel Analytics
@@ -16,8 +17,11 @@ Plataforma de **capacitación política** de CO Politica Centro: dos vías (conc
 ```bash
 pnpm install
 cp .env.example .env.local
+# Completa NEXT_PUBLIC_FIREBASE_* en .env.local
 pnpm dev
 ```
+
+Sin variables Firebase la web funciona igual (contenido público); solo se desactiva iniciar sesión y guardar progreso.
 
 ## Scripts
 
@@ -30,11 +34,21 @@ pnpm dev
 ## Rutas
 
 - `/` — elección de vía
-- `/ruta?via=concientizacion|practica` — itinerario guiado
+- `/via/[via]` — hub de vía (`concientizacion` \| `practica`)
+- `/ruta/[via]` — itinerario paso a paso (también `/ruta?via=` redirige)
 - `/cursos` — catálogo (`?via=` / `?rama=`)
-- `/cursos/[slug]` — detalle (publicado u outline)
-- `/cursos/[slug]/[leccion]` — lección
+- `/cursos/[slug]` — detalle del curso
+- `/cursos/[slug]/[leccion]` — lección (marcar progreso si hay sesión)
 - `/recursos` — biblioteca (`?tipo=` / `?via=` / `?rama=`)
+- `/cuenta/entrar` · `/cuenta/registro` · `/cuenta/progreso`
+
+## Auth y progreso
+
+- Contenido **siempre legible sin sesión**.
+- Con cuenta (email + contraseña): marcar lecciones completadas; ver barras en ruta y resumen en `/cuenta/progreso`.
+- Firestore: colección `capacitacionUsers/{uid}/lessonProgress/{curso__leccion}`.
+- Variables: ver `.env.example`. En Vercel, configura las mismas `NEXT_PUBLIC_FIREBASE_*`.
+- Dominios autorizados en Firebase Auth Console: `localhost` y el dominio de producción.
 
 ## Contenido
 

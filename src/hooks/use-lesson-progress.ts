@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
 import {
   fetchCompletedLessonKeys,
@@ -9,41 +9,47 @@ import {
 } from "@/lib/firebase/progress";
 import { progressKey } from "@/lib/progress";
 
+const EMPTY = new Set<string>();
+
 export function useLessonProgress() {
   const { user, configured } = useAuth();
-  const [completed, setCompleted] = useState<Set<string>>(new Set());
-  const [loading, setLoading] = useState(false);
+  const uid = user?.uid ?? null;
+  const [cache, setCache] = useState<{
+    uid: string;
+    keys: Set<string>;
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!configured || !user) {
-      setCompleted(new Set());
-      setLoading(false);
-      return;
-    }
+    if (!configured || !uid) return;
 
     let cancelled = false;
-    setLoading(true);
-    setError(null);
-
-    void fetchCompletedLessonKeys(user.uid)
+    void fetchCompletedLessonKeys(uid)
       .then((keys) => {
-        if (!cancelled) setCompleted(keys);
+        if (!cancelled) {
+          setCache({ uid, keys });
+          setError(null);
+        }
       })
       .catch(() => {
         if (!cancelled) {
           setError("No se pudo cargar el progreso.");
-          setCompleted(new Set());
+          setCache({ uid, keys: new Set() });
         }
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
       });
 
     return () => {
       cancelled = true;
     };
-  }, [configured, user]);
+  }, [configured, uid]);
+
+  const completed = useMemo(() => {
+    if (!uid) return EMPTY;
+    if (cache?.uid === uid) return cache.keys;
+    return EMPTY;
+  }, [uid, cache]);
+
+  const loading = Boolean(configured && uid && cache?.uid !== uid);
 
   const isComplete = useCallback(
     (cursoSlug: string, leccionSlug: string) =>
@@ -53,22 +59,27 @@ export function useLessonProgress() {
 
   const toggleComplete = useCallback(
     async (cursoSlug: string, leccionSlug: string) => {
-      if (!user) throw new Error("Debes iniciar sesión.");
+      if (!uid) throw new Error("Debes iniciar sesión.");
       const key = progressKey(cursoSlug, leccionSlug);
       const currently = completed.has(key);
       if (currently) {
-        await unmarkLessonComplete(user.uid, cursoSlug, leccionSlug);
-        setCompleted((prev) => {
-          const next = new Set(prev);
+        await unmarkLessonComplete(uid, cursoSlug, leccionSlug);
+        setCache((prev) => {
+          const base = prev?.uid === uid ? prev.keys : new Set<string>();
+          const next = new Set(base);
           next.delete(key);
-          return next;
+          return { uid, keys: next };
         });
       } else {
-        await markLessonComplete(user.uid, cursoSlug, leccionSlug);
-        setCompleted((prev) => new Set(prev).add(key));
+        await markLessonComplete(uid, cursoSlug, leccionSlug);
+        setCache((prev) => {
+          const base = prev?.uid === uid ? prev.keys : new Set<string>();
+          const next = new Set(base).add(key);
+          return { uid, keys: next };
+        });
       }
     },
-    [user, completed],
+    [uid, completed],
   );
 
   return {
