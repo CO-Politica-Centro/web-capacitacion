@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { AuthProvider } from "@/components/auth-provider";
 import { BrandMark } from "@/components/brand-mark";
 import { SiteHeader } from "@/components/site-header";
 import { themeInitScript } from "@/lib/theme";
@@ -70,44 +71,46 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="flex min-h-full flex-col antialiased">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <footer className="border-foreground/10 text-muted border-t px-6 py-8 text-sm">
-          <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-col gap-2">
-              <BrandMark
-                name="Capacitación · Centro"
-                size={28}
-                className="text-foreground"
-              />
-              <p>Capacitación política — CO Politica Centro.</p>
+        <AuthProvider>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <footer className="border-foreground/10 text-muted border-t px-6 py-8 text-sm">
+            <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col gap-2">
+                <BrandMark
+                  name="Capacitación · Centro"
+                  size={28}
+                  className="text-foreground"
+                />
+                <p>Capacitación política — CO Politica Centro.</p>
+              </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1">
+                <a
+                  className="hover:text-foreground underline-offset-4 hover:underline"
+                  href="https://web-portal-co-politica.vercel.app"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Portal
+                </a>
+                <a
+                  className="hover:text-foreground underline-offset-4 hover:underline"
+                  href="https://beacons.ai/centropd"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Comunidades
+                </a>
+                <a
+                  className="hover:text-foreground underline-offset-4 hover:underline"
+                  href="mailto:rafaelsolanov@web.de"
+                >
+                  Contacto
+                </a>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1">
-              <a
-                className="hover:text-foreground underline-offset-4 hover:underline"
-                href="https://web-portal-co-politica.vercel.app"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Portal
-              </a>
-              <a
-                className="hover:text-foreground underline-offset-4 hover:underline"
-                href="https://beacons.ai/centropd"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Comunidades
-              </a>
-              <a
-                className="hover:text-foreground underline-offset-4 hover:underline"
-                href="mailto:rafaelsolanov@web.de"
-              >
-                Contacto
-              </a>
-            </div>
-          </div>
-        </footer>
+          </footer>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>

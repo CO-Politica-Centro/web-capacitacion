@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { AuthNav } from "@/components/auth-nav";
 import { BrandMark } from "@/components/brand-mark";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
@@ -32,10 +33,10 @@ export function SiteHeader() {
             />
           </Link>
 
-          <div className="flex min-w-0 items-center gap-2 sm:gap-4">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <nav
               aria-label="Principal"
-              className="text-muted hidden items-center gap-4 text-sm sm:flex"
+              className="text-muted hidden items-center gap-4 text-sm md:flex"
             >
               {links.map((link) => (
                 <Link
@@ -53,7 +54,7 @@ export function SiteHeader() {
 
             <nav
               aria-label="Principal móvil"
-              className="text-muted flex max-w-[min(100%,14rem)] flex-wrap items-center justify-end gap-x-2 gap-y-0 text-xs sm:hidden"
+              className="text-muted flex max-w-[min(100%,12rem)] flex-wrap items-center justify-end gap-x-2 gap-y-0 text-xs md:hidden"
             >
               {links.map((link) => (
                 <Link
@@ -66,6 +67,7 @@ export function SiteHeader() {
               ))}
             </nav>
 
+            <AuthNav />
             <ThemeToggle />
           </div>
         </div>
