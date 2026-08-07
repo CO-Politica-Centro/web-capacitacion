@@ -205,7 +205,7 @@ Consulta siempre fuentes oficiales cuando necesites un dato normativo preciso.`,
     ],
     ejercicio: `Completa la plantilla mínima con un solo problema real. Compártela con alguien de confianza y pídele que te señale un hueco (nivel, institución o fuente).`,
     siguientePaso: {
-      label: "Ver outline: ¿Qué es el centro?",
+      label: "Siguiente curso: ¿Qué es el centro?",
       href: "/cursos/centro-liberalismo-social",
     },
   },

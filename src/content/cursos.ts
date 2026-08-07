@@ -62,7 +62,7 @@ export const cursos: Curso[] = [
     ],
     nivel: "intro",
     duracionMin: 45,
-    status: "outline",
+    status: "publicado",
     leccionesMeta: [
       {
         slug: "mapa-ideologico",
@@ -103,7 +103,7 @@ export const cursos: Curso[] = [
     ],
     nivel: "intro",
     duracionMin: 40,
-    status: "outline",
+    status: "publicado",
     leccionesMeta: [
       {
         slug: "voto-informado",
@@ -144,7 +144,7 @@ export const cursos: Curso[] = [
     ],
     nivel: "intro",
     duracionMin: 40,
-    status: "outline",
+    status: "publicado",
     leccionesMeta: [
       {
         slug: "fuentes",

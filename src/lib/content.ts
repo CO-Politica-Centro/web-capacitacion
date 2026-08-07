@@ -1,6 +1,9 @@
 import { cursos } from "@/content/cursos";
+import { leccionesCentroLiberalismoSocial } from "@/content/lecciones/centro-liberalismo-social";
 import { leccionesDeInteresadoAActivo } from "@/content/lecciones/de-interesado-a-activo";
 import { leccionesEstadoColombiano } from "@/content/lecciones/estado-colombiano";
+import { leccionesLeerPoliticaSinRuido } from "@/content/lecciones/leer-politica-sin-ruido";
+import { leccionesParticiparSinCandidato } from "@/content/lecciones/participar-sin-candidato";
 import { ramas } from "@/content/ramas";
 import { recursos } from "@/content/recursos";
 import type {
@@ -18,6 +21,9 @@ import { vias } from "@/content/vias";
 
 const leccionesByCurso: Record<string, Leccion[]> = {
   "estado-colombiano": leccionesEstadoColombiano,
+  "centro-liberalismo-social": leccionesCentroLiberalismoSocial,
+  "participar-sin-candidato": leccionesParticiparSinCandidato,
+  "leer-politica-sin-ruido": leccionesLeerPoliticaSinRuido,
   "de-interesado-a-activo": leccionesDeInteresadoAActivo,
 };
 

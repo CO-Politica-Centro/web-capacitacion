@@ -45,6 +45,9 @@ describe("content helpers", () => {
 
   it("distingue publicado vs outline", () => {
     expect(getCursoBySlug("estado-colombiano")?.status).toBe("publicado");
+    expect(getCursoBySlug("centro-liberalismo-social")?.status).toBe(
+      "publicado",
+    );
     expect(getCursoBySlug("decidir-en-publico")?.status).toBe("outline");
   });
 
@@ -56,6 +59,10 @@ describe("content helpers", () => {
     const leccion = getLeccion("estado-colombiano", "tres-ramas");
     expect(leccion?.titulo).toMatch(/ramas/);
 
+    expect(getLeccionesForCurso("centro-liberalismo-social")).toHaveLength(4);
+    expect(getLeccion("participar-sin-candidato", "veeduria")?.sections.length).toBeGreaterThan(
+      0,
+    );
     expect(getLeccion("decidir-en-publico", "etica-liderazgo")).toBeUndefined();
   });
 
