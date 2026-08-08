@@ -18,7 +18,7 @@ describe("content helpers", () => {
     const vias = getVias();
     expect(vias).toHaveLength(2);
     expect(getViaBySlug("concientizacion")?.nombre).toMatch(/Concientización/);
-    expect(getViaBySlug("practica")?.ctaLabel).toBe("Quiero meterse");
+    expect(getViaBySlug("practica")?.ctaLabel).toBe("Quiero meterme");
     expect(isViaSlug("practica")).toBe(true);
     expect(isViaSlug("otra")).toBe(false);
   });

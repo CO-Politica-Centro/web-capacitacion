@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CursoLessonList } from "@/components/curso-lesson-list";
 import { CursoStatusBadge } from "@/components/curso-status-badge";
+import { JsonLd } from "@/components/json-ld";
 import { cursos } from "@/content/cursos";
 import { getCursoBySlug, getRamaById, getViaBySlug } from "@/lib/content";
+import { getSiteUrl, pageMetadata } from "@/lib/seo";
 
 type CursoPageProps = {
   params: Promise<{ slug: string }>;
@@ -20,10 +23,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const curso = getCursoBySlug(slug);
   if (!curso) return { title: "Curso" };
-  return {
+  return pageMetadata({
     title: curso.titulo,
     description: curso.resumen,
-  };
+    path: `/cursos/${curso.slug}`,
+    type: "article",
+  });
 }
 
 export default async function CursoDetailPage({ params }: CursoPageProps) {
@@ -35,28 +40,47 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
   const via = rama ? getViaBySlug(rama.viaId) : undefined;
   const published = curso.status === "publicado";
   const firstLesson = curso.leccionesMeta[0];
+  const siteUrl = getSiteUrl();
+
+  const breadcrumbItems = [
+    { label: "Inicio", href: "/" },
+    { label: "Cursos", href: "/cursos" },
+    ...(via
+      ? [{ label: `Ruta ${via.nombre}`, href: `/ruta/${via.slug}` }]
+      : []),
+    { label: curso.titulo },
+  ];
+
+  const courseLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: curso.titulo,
+    description: curso.resumen,
+    url: `${siteUrl}/cursos/${curso.slug}`,
+    inLanguage: "es-CO",
+    provider: {
+      "@type": "Organization",
+      name: "CO Politica Centro",
+      url: "https://beacons.ai/centropd",
+    },
+    timeRequired: `PT${curso.duracionMin}M`,
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.label,
+      ...(item.href ? { item: `${siteUrl}${item.href}` } : {}),
+    })),
+  };
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-16 lg:py-20">
-      <nav className="text-muted mb-8 text-sm">
-        <Link
-          href="/cursos"
-          className="hover:text-foreground underline-offset-4 hover:underline"
-        >
-          Cursos
-        </Link>
-        {via ? (
-          <>
-            {" · "}
-            <Link
-              href={`/ruta/${via.slug}`}
-              className="hover:text-foreground underline-offset-4 hover:underline"
-            >
-              Ruta {via.nombre}
-            </Link>
-          </>
-        ) : null}
-      </nav>
+      <JsonLd data={[courseLd, breadcrumbLd]} />
+      <Breadcrumbs items={breadcrumbItems} />
 
       <div className="max-w-2xl space-y-4">
         <CursoStatusBadge status={curso.status} />

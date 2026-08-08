@@ -90,8 +90,8 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     <button
       type="button"
       className={cn(
-        "border-foreground/15 text-foreground inline-flex size-10 shrink-0 items-center justify-center rounded-xl border bg-transparent transition-colors",
-        "hover:bg-foreground/5 focus-visible:outline-none",
+        "border-border-strong text-foreground inline-flex size-11 shrink-0 items-center justify-center rounded-lg border-2 bg-transparent transition-colors",
+        "hover:bg-foreground/5",
         className,
       )}
       aria-label={

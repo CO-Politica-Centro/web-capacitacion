@@ -119,6 +119,7 @@ export function ProgressDashboard({ className }: ProgressDashboardProps) {
                       aria-valuenow={Math.round(ratio * 100)}
                       aria-valuemin={0}
                       aria-valuemax={100}
+                      aria-valuetext={`${doneLessons} de ${curso.leccionesMeta.length} lecciones`}
                       aria-label={`Progreso de ${curso.titulo}`}
                     >
                       <div

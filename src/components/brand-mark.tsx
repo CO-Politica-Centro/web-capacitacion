@@ -21,13 +21,15 @@ export function BrandMark({
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <Image
-        src="/brand/logo-flor.png"
+        src="/brand/logo-flor.svg"
         alt=""
         width={size}
         height={size}
-        className="shrink-0 rounded-full"
+        className="aspect-square shrink-0 overflow-hidden rounded-full object-cover"
+        style={{ width: size, height: size }}
         priority={priority}
         sizes={`${size}px`}
+        unoptimized
       />
       {showName ? (
         <span

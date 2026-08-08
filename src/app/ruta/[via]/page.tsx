@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RutaTimelineWithProgress } from "@/components/ruta-timeline-with-progress";
 import {
   getCursoBySlug,
@@ -10,6 +11,7 @@ import {
   getVias,
   isViaSlug,
 } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 type RutaViaPageProps = {
@@ -27,10 +29,11 @@ export async function generateMetadata({
   if (!isViaSlug(viaParam)) return { title: "Ruta de aprendizaje" };
   const via = getViaBySlug(viaParam);
   if (!via) return { title: "Ruta de aprendizaje" };
-  return {
+  return pageMetadata({
     title: `Ruta · ${via.nombre}`,
     description: via.descripcion,
-  };
+    path: `/ruta/${via.slug}`,
+  });
 }
 
 export default async function RutaViaPage({ params }: RutaViaPageProps) {
@@ -49,6 +52,12 @@ export default async function RutaViaPage({ params }: RutaViaPageProps) {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-14 sm:py-16 lg:py-20">
+      <Breadcrumbs
+        items={[
+          { label: "Inicio", href: "/" },
+          { label: `Ruta · ${activeVia.nombre}` },
+        ]}
+      />
       <div className="mb-10 flex flex-wrap gap-2 sm:mb-12">
         {vias.map((via) => {
           const active = via.slug === viaParam;

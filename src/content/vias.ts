@@ -24,6 +24,6 @@ export const vias: Via[] = [
     descripcion:
       "Roles, primera semana, organización, comunicación y decisión en público. Para quien quiere meterse y necesita un mapa concreto.",
     audiencia: "Voluntariado, militancia y liderazgo ciudadano",
-    ctaLabel: "Quiero meterse",
+    ctaLabel: "Quiero meterme",
   },
 ];

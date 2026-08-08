@@ -9,12 +9,14 @@ type CursoCardProps = {
 
 export function CursoCard({ curso, rama }: CursoCardProps) {
   return (
-    <article className="border-foreground/10 border-b py-6 first:pt-0">
+    <article className="panel mb-4 last:mb-0">
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <CursoStatusBadge status={curso.status} />
-        <span className="text-muted text-xs">{rama.nombre}</span>
+        <span className="text-muted text-xs font-medium tracking-wide uppercase">
+          {rama.nombre}
+        </span>
       </div>
-      <h2 className="mt-2 text-xl font-semibold">
+      <h2 className="mt-3 text-xl font-semibold sm:text-[1.35rem]">
         <Link
           href={`/cursos/${curso.slug}`}
           className="hover:text-brand-green underline-offset-4 hover:underline"
@@ -22,10 +24,10 @@ export function CursoCard({ curso, rama }: CursoCardProps) {
           {curso.titulo}
         </Link>
       </h2>
-      <p className="text-muted mt-2 max-w-2xl text-sm leading-relaxed">
+      <p className="text-muted mt-2 max-w-2xl text-base leading-relaxed">
         {curso.resumen}
       </p>
-      <p className="text-muted mt-3 text-sm">
+      <p className="text-muted mt-4 text-sm">
         {curso.leccionesMeta.length} lecciones · {curso.duracionMin} min ·{" "}
         {curso.nivel === "intro" ? "Introducción" : "Intermedio"}
       </p>

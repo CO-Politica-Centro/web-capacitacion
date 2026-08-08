@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { AuthProvider } from "@/components/auth-provider";
-import { BrandMark } from "@/components/brand-mark";
+import { JsonLd } from "@/components/json-ld";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { getSiteUrl } from "@/lib/seo";
 import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
@@ -37,31 +39,28 @@ export const metadata: Metadata = {
     "Escuela abierta de CO Politica Centro: concientización política y formación práctica con rutas guiadas para Colombia.",
   metadataBase: siteMetadataBase(),
   icons: {
-    icon: [{ url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" }],
+    icon: [
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-64.png", sizes: "64x64", type: "image/png" },
+    ],
     apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
     type: "website",
     locale: "es_CO",
     siteName: "Capacitación · CO Politica Centro",
-    title: "Capacitación política — CO Politica Centro",
-    description:
-      "Escuela abierta de CO Politica Centro: concientización política y formación práctica con rutas guiadas para Colombia.",
     images: [
       {
-        url: "/brand/logo-flor-social.jpg",
-        width: 1024,
-        height: 1024,
-        alt: "CO Politica Centro",
+        url: "/brand/og-social.png",
+        width: 1200,
+        height: 630,
+        alt: "Capacitación · CO Politica Centro",
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "Capacitación política — CO Politica Centro",
-    description:
-      "Escuela abierta de CO Politica Centro: concientización política y formación práctica con rutas guiadas para Colombia.",
-    images: ["/brand/logo-flor-social.jpg"],
+    card: "summary_large_image",
+    images: ["/brand/og-social.png"],
   },
 };
 
@@ -70,6 +69,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl = getSiteUrl();
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: "CO Politica Centro",
+        url: "https://beacons.ai/centropd",
+        logo: `${siteUrl}/brand/logo-flor-512.png`,
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: "Capacitación · CO Politica Centro",
+        url: siteUrl,
+        inLanguage: "es-CO",
+        publisher: { "@id": `${siteUrl}/#organization` },
+      },
+    ],
+  };
+
   return (
     <html
       lang="es"
@@ -78,47 +99,22 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <JsonLd data={organizationLd} />
       </head>
       <body className="flex min-h-full flex-col antialiased">
         <AuthProvider>
+          <a href="#contenido-principal" className="skip-link">
+            Saltar al contenido
+          </a>
           <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <footer className="border-foreground/10 text-muted border-t px-6 py-8 text-sm">
-            <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex flex-col gap-2">
-                <BrandMark
-                  name="Capacitación · Centro"
-                  size={28}
-                  className="text-foreground"
-                />
-                <p>Capacitación política — CO Politica Centro.</p>
-              </div>
-              <div className="flex flex-wrap gap-x-4 gap-y-1">
-                <a
-                  className="hover:text-foreground underline-offset-4 hover:underline"
-                  href="https://web-portal-co-politica.vercel.app"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Portal
-                </a>
-                <a
-                  className="hover:text-foreground underline-offset-4 hover:underline"
-                  href="https://beacons.ai/centropd"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Comunidades
-                </a>
-                <a
-                  className="hover:text-foreground underline-offset-4 hover:underline"
-                  href="mailto:rafaelsolanov@web.de"
-                >
-                  Contacto
-                </a>
-              </div>
-            </div>
-          </footer>
+          <main
+            id="contenido-principal"
+            tabIndex={-1}
+            className="contenido-principal flex-1"
+          >
+            {children}
+          </main>
+          <SiteFooter />
         </AuthProvider>
         <Analytics />
       </body>

@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProgressDashboard } from "@/components/progress-dashboard";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Mi progreso",
   description: "Avances guardados en cursos y rutas de capacitación.",
-};
+  path: "/cuenta/progreso",
+  robots: { index: false, follow: false },
+});
 
 export default function ProgresoPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-14 sm:py-16 lg:py-20">
+      <Breadcrumbs
+        items={[{ label: "Inicio", href: "/" }, { label: "Mi progreso" }]}
+      />
       <div className="max-w-2xl space-y-3">
         <p className="text-brand-green text-sm font-semibold tracking-[0.18em] uppercase">
           Cuenta
