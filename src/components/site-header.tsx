@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { AuthNav } from "@/components/auth-nav";
 import { BrandMark } from "@/components/brand-mark";
+import { LinkUnderline } from "@/components/link-underline";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
@@ -91,14 +92,13 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "inline-flex min-h-11 items-center transition-colors",
-                  "underline-offset-4 hover:underline",
+                  "group inline-flex min-h-11 items-center transition-colors",
                   active
                     ? "text-foreground font-semibold"
                     : "hover:text-foreground",
                 )}
               >
-                {link.label}
+                <LinkUnderline>{link.label}</LinkUnderline>
               </Link>
             );
           })}

@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/brand-mark";
+import { LinkUnderline } from "@/components/link-underline";
 import Link from "next/link";
 
 const internalLinks = [
@@ -41,9 +42,9 @@ export function SiteFooter() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-foreground inline-flex min-h-11 items-center underline-offset-4 hover:underline"
+                className="group hover:text-foreground inline-flex min-h-11 items-center"
               >
-                {link.label}
+                <LinkUnderline from="start">{link.label}</LinkUnderline>
               </Link>
             ))}
           </nav>
@@ -54,20 +55,20 @@ export function SiteFooter() {
             {externalLinks.map((link) => (
               <a
                 key={link.href}
-                className="hover:text-foreground inline-flex min-h-11 items-center underline-offset-4 hover:underline"
+                className="group hover:text-foreground inline-flex min-h-11 items-center"
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {link.label}
+                <LinkUnderline from="start">{link.label}</LinkUnderline>
                 <span className="sr-only"> (se abre en una pestaña nueva)</span>
               </a>
             ))}
             <a
-              className="hover:text-foreground inline-flex min-h-11 items-center underline-offset-4 hover:underline"
+              className="group hover:text-foreground inline-flex min-h-11 items-center"
               href="mailto:rafaelsolanov@web.de"
             >
-              Contacto
+              <LinkUnderline from="start">Contacto</LinkUnderline>
             </a>
           </nav>
         </div>
