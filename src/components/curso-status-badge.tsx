@@ -16,7 +16,7 @@ export function CursoStatusBadge({
   return (
     <span
       className={cn(
-        "inline-flex text-xs font-semibold tracking-wide uppercase",
+        "inline-flex text-sm font-semibold tracking-wide uppercase",
         status === "publicado" ? "text-brand-green" : "text-muted",
         className,
       )}

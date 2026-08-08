@@ -42,6 +42,11 @@
   --font-sans: var(--font-source);
 }
 
+html {
+  /* Piso de accesibilidad: 16px base; no bajar de 14px en UI legible */
+  font-size: 100%;
+}
+
 body {
   background:
     radial-gradient(
@@ -57,6 +62,7 @@ body {
     var(--background);
   color: var(--foreground);
   font-family: var(--font-source), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -140,7 +146,7 @@ h3 {
   border-radius: 0.5rem;
   background: var(--foreground);
   color: var(--background);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   transform: translateY(-120%);

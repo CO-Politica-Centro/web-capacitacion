@@ -66,7 +66,7 @@ export default async function RutaViaPage({ params }: RutaViaPageProps) {
               key={via.id}
               href={`/ruta/${via.slug}`}
               className={cn(
-                "inline-flex min-h-11 items-center rounded-md px-4 py-2 text-sm font-semibold transition",
+                "inline-flex min-h-11 items-center rounded-md px-4 py-2 text-base font-semibold transition",
                 active
                   ? "bg-foreground text-background"
                   : "border-foreground/15 bg-surface text-muted hover:text-foreground border",
@@ -81,7 +81,7 @@ export default async function RutaViaPage({ params }: RutaViaPageProps) {
 
       <RutaTimelineWithProgress via={activeVia} items={items} />
 
-      <p className="text-muted mt-14 text-sm">
+      <p className="text-muted mt-14 text-base">
         Explora el{" "}
         <Link
           href={`/via/${viaParam}`}

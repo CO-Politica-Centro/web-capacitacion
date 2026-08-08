@@ -21,7 +21,7 @@ export default function ProgresoPage() {
           Cuenta
         </p>
         <h1 className="text-3xl font-semibold sm:text-4xl">Mi progreso</h1>
-        <p className="text-muted text-sm leading-relaxed">
+        <p className="text-muted text-base leading-relaxed">
           Resumen de lecciones completadas. Sin sesión, el contenido sigue
           disponible en cursos y rutas.
         </p>

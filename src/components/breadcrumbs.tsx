@@ -13,7 +13,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
   if (items.length === 0) return null;
 
   return (
-    <nav aria-label="Miga de pan" className="text-muted mb-8 text-sm">
+    <nav aria-label="Miga de pan" className="text-muted mb-8 text-base">
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;

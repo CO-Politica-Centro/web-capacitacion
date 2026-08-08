@@ -58,7 +58,7 @@ export default async function RecursosPage({
         </p>
       </div>
 
-      <div className="mt-10 space-y-4 text-sm">
+      <div className="mt-10 space-y-4 text-base">
         <nav
           aria-label="Filtrar por tipo"
           className="flex flex-wrap gap-x-4 gap-y-2"

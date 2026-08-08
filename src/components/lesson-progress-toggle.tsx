@@ -26,7 +26,7 @@ export function LessonProgressToggle({
 
   if (authLoading || loading) {
     return (
-      <p className={cn("text-muted text-sm", className)} aria-live="polite">
+      <p className={cn("text-muted text-base", className)} aria-live="polite">
         Cargando progreso…
       </p>
     );
@@ -34,7 +34,7 @@ export function LessonProgressToggle({
 
   if (!user) {
     return (
-      <p className={cn("text-muted text-sm leading-relaxed", className)}>
+      <p className={cn("text-muted text-base leading-relaxed", className)}>
         ¿Quieres guardar tu avance?{" "}
         <Link
           href="/cuenta/entrar"
@@ -71,7 +71,7 @@ export function LessonProgressToggle({
             .finally(() => setPending(false));
         }}
         className={cn(
-          "inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition",
+          "inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition",
           pending && "pointer-events-none opacity-60",
           done
             ? "border-brand-green text-brand-green border bg-transparent"
@@ -85,7 +85,7 @@ export function LessonProgressToggle({
             : "Marcar como completada"}
       </button>
       {error ? (
-        <p className="text-sm text-red-700 dark:text-red-300" role="alert">
+        <p className="text-base text-red-700 dark:text-red-300" role="alert">
           {error}
         </p>
       ) : null}

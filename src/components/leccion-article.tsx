@@ -16,12 +16,12 @@ type LeccionArticleProps = {
 export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
   return (
     <article className="mx-auto max-w-[65ch]">
-      <p className="text-muted text-sm">{leccion.minutos} min de lectura</p>
+      <p className="text-muted text-base">{leccion.minutos} min de lectura</p>
       <h1 className="mt-2 text-4xl leading-tight font-semibold">
         {leccion.titulo}
       </h1>
       {leccion.objetivos.length > 0 ? (
-        <ul className="text-muted mt-6 list-disc space-y-1 pl-5 text-sm">
+        <ul className="text-muted mt-6 list-disc space-y-1 pl-5 text-base">
           {leccion.objetivos.map((objetivo) => (
             <li key={objetivo}>{objetivo}</li>
           ))}
@@ -54,7 +54,7 @@ export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
           <p className="text-sm font-semibold tracking-wide uppercase">
             Ejercicio
           </p>
-          <div className="text-muted [&_a]:text-brand-green mt-2 text-sm leading-relaxed [&_a]:underline [&_a]:underline-offset-4">
+          <div className="text-muted [&_a]:text-brand-green mt-2 text-base leading-relaxed [&_a]:underline [&_a]:underline-offset-4">
             <ReactMarkdown components={markdownComponents}>
               {leccion.ejercicio}
             </ReactMarkdown>

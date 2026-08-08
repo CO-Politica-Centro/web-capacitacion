@@ -86,7 +86,7 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
         <CursoStatusBadge status={curso.status} />
         <h1 className="text-4xl leading-tight font-semibold">{curso.titulo}</h1>
         <p className="text-muted text-lg leading-relaxed">{curso.resumen}</p>
-        <p className="text-muted text-sm">
+        <p className="text-muted text-base">
           {rama?.nombre} · {curso.duracionMin} min ·{" "}
           {curso.nivel === "intro" ? "Introducción" : "Intermedio"}
         </p>
@@ -94,7 +94,7 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
 
       <section className="mt-10 max-w-2xl">
         <h2 className="text-xl font-semibold">Objetivos</h2>
-        <ul className="text-muted mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed">
+        <ul className="text-muted mt-3 list-disc space-y-2 pl-5 text-base leading-relaxed">
           {curso.objetivos.map((objetivo) => (
             <li key={objetivo}>{objetivo}</li>
           ))}
@@ -114,21 +114,21 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
         {published && firstLesson ? (
           <Link
             href={`/cursos/${curso.slug}/${firstLesson.slug}`}
-            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition"
           >
             Empezar curso
           </Link>
         ) : (
           <Link
             href={via ? `/ruta/${via.slug}` : "/ruta/concientizacion"}
-            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition"
           >
             Volver a la ruta
           </Link>
         )}
         <Link
           href="/cursos"
-          className="border-foreground/20 bg-surface hover:border-accent inline-flex min-h-11 items-center rounded-md border px-5 py-2.5 text-sm font-semibold transition"
+          className="border-foreground/20 bg-surface hover:border-accent inline-flex min-h-11 items-center rounded-md border px-5 py-2.5 text-base font-semibold transition"
         >
           Ver catálogo
         </Link>

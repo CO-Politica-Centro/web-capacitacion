@@ -79,7 +79,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
 
   if (!configured) {
     return (
-      <p className="text-muted text-sm leading-relaxed">
+      <p className="text-muted text-base leading-relaxed">
         La autenticación no está configurada en este entorno. Añade las
         variables{" "}
         <code className="text-foreground">NEXT_PUBLIC_FIREBASE_*</code> (ver{" "}
@@ -95,7 +95,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
       noValidate
     >
       <div className="space-y-1.5">
-        <label htmlFor="email" className="text-sm font-medium">
+        <label htmlFor="email" className="text-base font-medium">
           Correo
         </label>
         <input
@@ -108,11 +108,11 @@ export function AuthForm({ mode, className }: AuthFormProps) {
           onChange={(e) => setEmail(e.target.value)}
           aria-invalid={error ? true : undefined}
           aria-errormessage={error ? errorId : undefined}
-          className="border-foreground/20 bg-surface text-foreground focus-visible:border-brand-green w-full rounded-md border px-3 py-2.5 text-sm"
+          className="border-foreground/20 bg-surface text-foreground focus-visible:border-brand-green w-full rounded-md border px-3 py-2.5 text-base"
         />
       </div>
       <div className="space-y-1.5">
-        <label htmlFor="password" className="text-sm font-medium">
+        <label htmlFor="password" className="text-base font-medium">
           Contraseña
         </label>
         <input
@@ -127,10 +127,10 @@ export function AuthForm({ mode, className }: AuthFormProps) {
           aria-invalid={error ? true : undefined}
           aria-errormessage={error ? errorId : undefined}
           aria-describedby={isRegister ? passwordHintId : undefined}
-          className="border-foreground/20 bg-surface text-foreground focus-visible:border-brand-green w-full rounded-md border px-3 py-2.5 text-sm"
+          className="border-foreground/20 bg-surface text-foreground focus-visible:border-brand-green w-full rounded-md border px-3 py-2.5 text-base"
         />
         {isRegister ? (
-          <p id={passwordHintId} className="text-muted text-xs">
+          <p id={passwordHintId} className="text-muted text-sm">
             Mínimo {MIN_PASSWORD} caracteres.
           </p>
         ) : null}
@@ -139,7 +139,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
       {error ? (
         <p
           id={errorId}
-          className="text-sm text-red-700 dark:text-red-300"
+          className="text-base text-red-700 dark:text-red-300"
           role="alert"
         >
           {error}
@@ -147,7 +147,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
       ) : null}
 
       {info ? (
-        <p className="text-muted text-sm" role="status">
+        <p className="text-muted text-base" role="status">
           {info}
         </p>
       ) : null}
@@ -156,7 +156,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
         type="submit"
         aria-busy={pending}
         className={cn(
-          "bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 w-full items-center justify-center rounded-md px-5 py-2.5 text-sm font-semibold transition",
+          "bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 w-full items-center justify-center rounded-md px-5 py-2.5 text-base font-semibold transition",
           pending && "pointer-events-none opacity-60",
         )}
       >
@@ -169,7 +169,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
           aria-busy={resetPending}
           onClick={() => void onResetPassword()}
           className={cn(
-            "text-muted hover:text-foreground inline-flex min-h-11 w-full items-center justify-center text-sm underline-offset-4 hover:underline",
+            "text-muted hover:text-foreground inline-flex min-h-11 w-full items-center justify-center text-base underline-offset-4 hover:underline",
             resetPending && "pointer-events-none opacity-60",
           )}
         >
@@ -177,7 +177,7 @@ export function AuthForm({ mode, className }: AuthFormProps) {
         </button>
       ) : null}
 
-      <p className="text-muted text-sm">
+      <p className="text-muted text-base">
         {isRegister ? (
           <>
             ¿Ya tienes cuenta?{" "}

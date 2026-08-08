@@ -34,7 +34,7 @@ export function CatalogFilters({
     <div className="space-y-4">
       <nav
         aria-label="Filtrar por vía"
-        className="flex flex-wrap gap-x-4 gap-y-2 text-sm"
+        className="flex flex-wrap gap-x-4 gap-y-2 text-base"
       >
         <Link
           href="/cursos"
@@ -65,7 +65,7 @@ export function CatalogFilters({
       {ramasForVia.length > 0 ? (
         <nav
           aria-label="Filtrar por rama"
-          className="flex flex-wrap gap-x-4 gap-y-2 text-sm"
+          className="flex flex-wrap gap-x-4 gap-y-2 text-base"
         >
           <Link
             href={buildHref(activeVia)}

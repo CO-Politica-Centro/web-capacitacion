@@ -11,8 +11,16 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/cursos", label: "Cursos", match: "/cursos" },
-  { href: "/recursos", label: "Recursos", match: "/recursos" },
-  { href: "/ruta/concientizacion", label: "Ruta", match: "/ruta" },
+  {
+    href: "/ruta/concientizacion",
+    label: "Concientización",
+    match: "/ruta/concientizacion",
+  },
+  {
+    href: "/ruta/practica",
+    label: "Formación práctica",
+    match: "/ruta/practica",
+  },
 ] as const;
 
 const brandName = "Capacitación · Centro";
@@ -82,7 +90,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Principal"
-          className="text-muted hidden items-center gap-x-5 text-[0.9375rem] md:flex"
+          className="text-muted hidden items-center gap-x-5 text-base md:flex"
         >
           {links.map((link) => {
             const active = isActive(pathname, link.match);

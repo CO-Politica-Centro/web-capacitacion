@@ -27,19 +27,19 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
           <button
             type="button"
             onClick={reset}
-            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition"
           >
             Reintentar
           </button>
           <Link
             href="/"
-            className="border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-md border-2 px-5 py-2.5 text-sm font-medium transition"
+            className="border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-md border-2 px-5 py-2.5 text-base font-medium transition"
           >
             Ir al inicio
           </Link>
           <Link
             href="/cursos"
-            className="text-muted hover:text-foreground inline-flex min-h-11 items-center px-2 text-sm underline-offset-4 hover:underline"
+            className="text-muted hover:text-foreground inline-flex min-h-11 items-center px-2 text-base underline-offset-4 hover:underline"
           >
             Ver cursos
           </Link>

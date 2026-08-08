@@ -10,7 +10,7 @@ type LeccionNavProps = {
 export function LeccionNav({ cursoSlug, prev, next }: LeccionNavProps) {
   return (
     <nav
-      className="border-foreground/10 mt-12 flex flex-wrap items-start justify-between gap-4 border-t pt-6 text-sm"
+      className="border-foreground/10 mt-12 flex flex-wrap items-start justify-between gap-4 border-t pt-6 text-base"
       aria-label="Navegación de lecciones"
     >
       <div>
@@ -19,11 +19,11 @@ export function LeccionNav({ cursoSlug, prev, next }: LeccionNavProps) {
             href={`/cursos/${cursoSlug}/${prev.slug}`}
             className="hover:text-brand-green group block max-w-xs underline-offset-4 hover:underline"
           >
-            <span className="text-muted block text-xs">Anterior</span>
+            <span className="text-muted block text-sm">Anterior</span>
             <span className="font-semibold">{prev.titulo}</span>
           </Link>
         ) : (
-          <span className="text-muted text-xs">Inicio del curso</span>
+          <span className="text-muted text-sm">Inicio del curso</span>
         )}
       </div>
       <div className="text-right">
@@ -32,11 +32,11 @@ export function LeccionNav({ cursoSlug, prev, next }: LeccionNavProps) {
             href={`/cursos/${cursoSlug}/${next.slug}`}
             className="hover:text-brand-green group block max-w-xs underline-offset-4 hover:underline"
           >
-            <span className="text-muted block text-xs">Siguiente</span>
+            <span className="text-muted block text-sm">Siguiente</span>
             <span className="font-semibold">{next.titulo}</span>
           </Link>
         ) : (
-          <span className="text-muted text-xs">Fin del curso</span>
+          <span className="text-muted text-sm">Fin del curso</span>
         )}
       </div>
     </nav>

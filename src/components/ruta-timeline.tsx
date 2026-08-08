@@ -36,7 +36,7 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
         {nextPublished ? (
           <Link
             href={`/cursos/${nextPublished.curso.slug}`}
-            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition"
           >
             Empezar: {nextPublished.curso.titulo}
           </Link>
@@ -66,7 +66,7 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
                 )}
                 aria-hidden
               />
-              <p className="text-muted text-xs font-semibold tracking-wide uppercase">
+              <p className="text-muted text-sm font-semibold tracking-wide uppercase">
                 Paso {item.orden} · {item.rama.nombre}
               </p>
               <h3 className="mt-1 text-xl font-semibold">
@@ -81,7 +81,7 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
                   item.curso.titulo
                 )}
               </h3>
-              <p className="text-muted mt-2 max-w-xl text-sm leading-relaxed">
+              <p className="text-muted mt-2 max-w-xl text-base leading-relaxed">
                 {item.curso.resumen}
               </p>
               {hasProgress && published ? (
@@ -100,7 +100,7 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
                       style={{ width: `${Math.round(ratio * 100)}%` }}
                     />
                   </div>
-                  <p className="text-muted mt-1 text-xs">
+                  <p className="text-muted mt-1 text-sm">
                     {Math.round(ratio * 100)}% completado
                   </p>
                 </div>

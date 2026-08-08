@@ -23,7 +23,7 @@ type RecursoListProps = {
 export function RecursoList({ recursos }: RecursoListProps) {
   if (recursos.length === 0) {
     return (
-      <p className="text-muted text-sm">No hay recursos con ese filtro.</p>
+      <p className="text-muted text-base">No hay recursos con ese filtro.</p>
     );
   }
 
@@ -39,7 +39,7 @@ export function RecursoList({ recursos }: RecursoListProps) {
             }
             className="py-6"
           >
-            <p className="text-brand-green text-xs font-semibold tracking-wide uppercase">
+            <p className="text-brand-green text-sm font-semibold tracking-wide uppercase">
               {tipoLabel[recurso.tipo]}
             </p>
             <h2 className="mt-1 text-xl font-semibold">
@@ -67,11 +67,11 @@ export function RecursoList({ recursos }: RecursoListProps) {
                 recurso.titulo
               )}
             </h2>
-            <p className="text-muted mt-2 max-w-2xl text-sm leading-relaxed">
+            <p className="text-muted mt-2 max-w-2xl text-base leading-relaxed">
               {recurso.resumen}
             </p>
             {recurso.cuerpo ? (
-              <div className="text-foreground/90 [&_a]:text-brand-green mt-4 max-w-[65ch] space-y-2 text-sm leading-relaxed [&_a]:underline [&_a]:underline-offset-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
+              <div className="text-foreground/90 [&_a]:text-brand-green mt-4 max-w-[65ch] space-y-2 text-base leading-relaxed [&_a]:underline [&_a]:underline-offset-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
                 <ReactMarkdown components={markdownComponents}>
                   {recurso.cuerpo}
                 </ReactMarkdown>

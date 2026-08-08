@@ -19,13 +19,13 @@ export default function RegistroPage() {
           Cuenta
         </p>
         <h1 className="text-3xl font-semibold sm:text-4xl">Crear cuenta</h1>
-        <p className="text-muted text-sm leading-relaxed">
+        <p className="text-muted text-base leading-relaxed">
           Usa un correo y una contraseña. Luego podrás marcar lecciones
           completadas.
         </p>
       </div>
       <AuthForm mode="registro" className="mt-8" />
-      <p className="text-muted mt-10 text-sm">
+      <p className="text-muted mt-10 text-base">
         <Link
           href="/"
           className="text-foreground underline-offset-4 hover:underline"

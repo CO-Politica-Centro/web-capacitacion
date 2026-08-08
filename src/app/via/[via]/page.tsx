@@ -56,7 +56,7 @@ export default async function ViaHubPage({ params }: ViaPageProps) {
         <p className="text-muted text-base leading-relaxed">
           {via.descripcion}
         </p>
-        <p className="text-muted text-sm">{via.audiencia}</p>
+        <p className="text-muted text-base">{via.audiencia}</p>
         <div className="flex flex-wrap gap-3 pt-2">
           <Link
             href={`/ruta/${via.slug}`}
@@ -85,7 +85,7 @@ export default async function ViaHubPage({ params }: ViaPageProps) {
             const curso = cursos.find((c) => c.ramaId === rama.id);
             return (
               <li key={rama.id} className="panel">
-                <p className="text-brand-green text-xs font-semibold tracking-wide uppercase">
+                <p className="text-brand-green text-sm font-semibold tracking-wide uppercase">
                   Rama {index + 1}
                 </p>
                 <h3 className="mt-2 text-xl font-semibold">{rama.nombre}</h3>
@@ -93,7 +93,7 @@ export default async function ViaHubPage({ params }: ViaPageProps) {
                   {rama.resumen}
                 </p>
                 {curso ? (
-                  <p className="mt-4 text-sm">
+                  <p className="mt-4 text-base">
                     <Link
                       href={`/cursos/${curso.slug}`}
                       className="text-brand-green font-semibold underline-offset-4 hover:underline"

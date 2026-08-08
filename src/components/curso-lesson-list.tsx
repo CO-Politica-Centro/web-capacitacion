@@ -30,7 +30,7 @@ export function CursoLessonList({
             className="border-foreground/10 flex flex-wrap items-baseline justify-between gap-2 border-b py-3"
           >
             <div className="flex min-w-0 items-baseline gap-2">
-              <span className="text-muted text-xs">{leccion.orden}. </span>
+              <span className="text-muted text-sm">{leccion.orden}. </span>
               {published ? (
                 <Link
                   href={`/cursos/${cursoSlug}/${leccion.slug}`}
@@ -49,14 +49,14 @@ export function CursoLessonList({
               )}
               {done ? (
                 <span
-                  className="text-brand-green text-xs font-semibold"
+                  className="text-brand-green text-sm font-semibold"
                   aria-hidden
                 >
                   Hecha
                 </span>
               ) : null}
             </div>
-            <span className="text-muted text-xs">{leccion.minutos} min</span>
+            <span className="text-muted text-sm">{leccion.minutos} min</span>
           </li>
         );
       })}

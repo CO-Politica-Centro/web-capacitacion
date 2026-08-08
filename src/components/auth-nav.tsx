@@ -16,7 +16,7 @@ export function AuthNav({ className }: AuthNavProps) {
   if (loading) {
     return (
       <span
-        className={cn("text-muted text-sm", className)}
+        className={cn("text-muted text-base", className)}
         aria-busy="true"
         aria-live="polite"
       >
@@ -30,14 +30,14 @@ export function AuthNav({ className }: AuthNavProps) {
       <div className={cn("flex flex-wrap items-center gap-2", className)}>
         <Link
           href="/cuenta/progreso"
-          className="text-muted hover:text-foreground inline-flex min-h-11 items-center text-sm"
+          className="text-muted hover:text-foreground inline-flex min-h-11 items-center text-base"
         >
           Mi progreso
         </Link>
         <button
           type="button"
           onClick={() => void logOut()}
-          className="border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-lg border-2 px-3.5 text-sm font-medium transition"
+          className="border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-lg border-2 px-3.5 text-base font-medium transition"
         >
           Salir
         </button>
@@ -49,7 +49,7 @@ export function AuthNav({ className }: AuthNavProps) {
     <Link
       href="/cuenta/entrar"
       className={cn(
-        "border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-lg border-2 px-3.5 text-sm font-medium transition",
+        "border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-lg border-2 px-3.5 text-base font-medium transition",
         className,
       )}
     >

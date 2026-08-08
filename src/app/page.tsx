@@ -1,8 +1,8 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import { ViaCard } from "@/app/_components/via-card";
 import { BrandMark } from "@/components/brand-mark";
 import { ViaChooser } from "@/components/via-chooser";
-import { getRamasByVia, getVias } from "@/lib/content";
+import { getVias } from "@/lib/content";
 import { defaultSiteDescription, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -42,73 +42,9 @@ export default function HomePage() {
         </div>
 
         <div className="home-reveal-delay-2 mt-16 grid gap-5 sm:mt-20 sm:gap-6 lg:grid-cols-2">
-          {vias.map((via) => {
-            const ramas = getRamasByVia(via.slug);
-            const headingId = `via-${via.slug}-heading`;
-            return (
-              <section
-                key={via.id}
-                className="panel flex flex-col gap-5"
-                aria-labelledby={headingId}
-              >
-                <div className="space-y-3">
-                  <h2
-                    id={headingId}
-                    className="text-2xl font-semibold sm:text-[1.65rem]"
-                  >
-                    {via.nombre}
-                  </h2>
-                  <p className="text-muted text-base leading-relaxed">
-                    <span className="text-foreground font-medium">
-                      {via.audiencia}.
-                    </span>{" "}
-                    {via.descripcion}
-                  </p>
-                </div>
-
-                <ul className="border-border divide-border divide-y border-y">
-                  {ramas.map((rama) => (
-                    <li key={rama.id} className="py-3.5 first:pt-3 last:pb-3">
-                      <p className="text-foreground text-base leading-snug font-semibold">
-                        {rama.nombre}
-                      </p>
-                      <p className="text-muted mt-1 text-sm leading-relaxed">
-                        {rama.resumen}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-1">
-                  <Link
-                    href={`/via/${via.slug}`}
-                    className="text-brand-green inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
-                  >
-                    Explorar vía
-                  </Link>
-                  <Link
-                    href={`/ruta/${via.slug}`}
-                    className="text-foreground inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
-                  >
-                    Ver ruta paso a paso
-                  </Link>
-                </div>
-              </section>
-            );
-          })}
-        </div>
-
-        <div className="border-border bg-surface mt-12 rounded-2xl border px-5 py-5 sm:mt-14 sm:px-6">
-          <p className="text-muted text-base leading-relaxed">
-            ¿Solo quieres materiales sueltos?{" "}
-            <Link
-              href="/recursos"
-              className="text-foreground font-semibold underline-offset-4 hover:underline"
-            >
-              Ir a recursos
-            </Link>
-            .
-          </p>
+          {vias.map((via) => (
+            <ViaCard key={via.id} via={via} />
+          ))}
         </div>
       </div>
     </div>

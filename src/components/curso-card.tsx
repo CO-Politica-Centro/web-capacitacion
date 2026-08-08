@@ -12,7 +12,7 @@ export function CursoCard({ curso, rama }: CursoCardProps) {
     <article className="panel mb-4 last:mb-0">
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <CursoStatusBadge status={curso.status} />
-        <span className="text-muted text-xs font-medium tracking-wide uppercase">
+        <span className="text-muted text-sm font-medium tracking-wide uppercase">
           {rama.nombre}
         </span>
       </div>
@@ -27,7 +27,7 @@ export function CursoCard({ curso, rama }: CursoCardProps) {
       <p className="text-muted mt-2 max-w-2xl text-base leading-relaxed">
         {curso.resumen}
       </p>
-      <p className="text-muted mt-4 text-sm">
+      <p className="text-muted mt-4 text-base">
         {curso.leccionesMeta.length} lecciones · {curso.duracionMin} min ·{" "}
         {curso.nivel === "intro" ? "Introducción" : "Intermedio"}
       </p>

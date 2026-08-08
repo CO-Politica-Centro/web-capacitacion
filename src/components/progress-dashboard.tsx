@@ -19,7 +19,7 @@ export function ProgressDashboard({ className }: ProgressDashboardProps) {
 
   if (!configured) {
     return (
-      <p className={cn("text-muted text-sm", className)}>
+      <p className={cn("text-muted text-base", className)}>
         Firebase no está configurado en este entorno.
       </p>
     );
@@ -27,26 +27,28 @@ export function ProgressDashboard({ className }: ProgressDashboardProps) {
 
   if (authLoading || loading) {
     return (
-      <p className={cn("text-muted text-sm", className)}>Cargando progreso…</p>
+      <p className={cn("text-muted text-base", className)}>
+        Cargando progreso…
+      </p>
     );
   }
 
   if (!user) {
     return (
       <div className={cn("space-y-4", className)}>
-        <p className="text-muted text-sm leading-relaxed">
+        <p className="text-muted text-base leading-relaxed">
           Inicia sesión para ver y guardar tus avances.
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
             href="/cuenta/entrar"
-            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition"
+            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition"
           >
             Entrar
           </Link>
           <Link
             href="/cuenta/registro"
-            className="border-foreground/20 bg-surface text-foreground inline-flex min-h-11 items-center rounded-md border px-5 py-2.5 text-sm font-semibold"
+            className="border-foreground/20 bg-surface text-foreground inline-flex min-h-11 items-center rounded-md border px-5 py-2.5 text-base font-semibold"
           >
             Crear cuenta
           </Link>
@@ -63,7 +65,7 @@ export function ProgressDashboard({ className }: ProgressDashboardProps) {
 
   return (
     <div className={cn("space-y-10", className)}>
-      <p className="text-sm">
+      <p className="text-base">
         <span className="font-semibold">{doneCount}</span>
         <span className="text-muted">
           {" "}
@@ -82,7 +84,7 @@ export function ProgressDashboard({ className }: ProgressDashboardProps) {
               <h2 className="text-xl font-semibold">{via.nombre}</h2>
               <Link
                 href={`/ruta/${via.slug}`}
-                className="text-brand-green text-sm font-semibold underline-offset-4 hover:underline"
+                className="text-brand-green text-base font-semibold underline-offset-4 hover:underline"
               >
                 Ver ruta
               </Link>
@@ -109,7 +111,7 @@ export function ProgressDashboard({ className }: ProgressDashboardProps) {
                       >
                         {curso.titulo}
                       </Link>
-                      <span className="text-muted text-xs">
+                      <span className="text-muted text-sm">
                         {doneLessons}/{curso.leccionesMeta.length}
                       </span>
                     </div>

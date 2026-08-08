@@ -19,12 +19,12 @@ export default function EntrarPage() {
           Cuenta
         </p>
         <h1 className="text-3xl font-semibold sm:text-4xl">Iniciar sesión</h1>
-        <p className="text-muted text-sm leading-relaxed">
+        <p className="text-muted text-base leading-relaxed">
           Los cursos son públicos. La cuenta solo guarda tu progreso y avances.
         </p>
       </div>
       <AuthForm mode="entrar" className="mt-8" />
-      <p className="text-muted mt-10 text-sm">
+      <p className="text-muted mt-10 text-base">
         <Link
           href="/"
           className="text-foreground font-medium underline-offset-4 hover:underline"

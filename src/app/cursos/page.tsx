@@ -44,7 +44,7 @@ export default async function CursosPage({ searchParams }: CursosPageProps) {
 
       <div className="mt-10">
         {cursos.length === 0 ? (
-          <p className="text-muted text-sm">No hay cursos con ese filtro.</p>
+          <p className="text-muted text-base">No hay cursos con ese filtro.</p>
         ) : (
           cursos.map((curso) => {
             const cursoRama = getRamaById(curso.ramaId);

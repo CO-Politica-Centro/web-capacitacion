@@ -90,7 +90,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     <button
       type="button"
       className={cn(
-        "border-border-strong text-foreground inline-flex size-11 shrink-0 items-center justify-center rounded-lg border-2 bg-transparent transition-colors",
+        "border-border-strong text-foreground inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-lg border-2 bg-transparent transition-colors",
         "hover:bg-foreground/5",
         className,
       )}
