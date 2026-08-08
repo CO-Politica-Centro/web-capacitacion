@@ -8,11 +8,9 @@ import {
   getRamaById,
   getRutaSteps,
   getViaBySlug,
-  getVias,
   isViaSlug,
 } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
 
 type RutaViaPageProps = {
   params: Promise<{ via: string }>;
@@ -42,7 +40,6 @@ export default async function RutaViaPage({ params }: RutaViaPageProps) {
   const activeVia = getViaBySlug(viaParam);
   if (!activeVia) notFound();
 
-  const vias = getVias();
   const items = getRutaSteps(viaParam).flatMap((step) => {
     const curso = getCursoBySlug(step.cursoSlug);
     const rama = getRamaById(step.ramaId);
@@ -58,26 +55,6 @@ export default async function RutaViaPage({ params }: RutaViaPageProps) {
           { label: `Ruta · ${activeVia.nombre}` },
         ]}
       />
-      <div className="mb-10 flex flex-wrap gap-2 sm:mb-12">
-        {vias.map((via) => {
-          const active = via.slug === viaParam;
-          return (
-            <Link
-              key={via.id}
-              href={`/ruta/${via.slug}`}
-              className={cn(
-                "inline-flex min-h-11 items-center rounded-md px-4 py-2 text-base font-semibold transition",
-                active
-                  ? "bg-foreground text-background"
-                  : "border-foreground/15 bg-surface text-muted hover:text-foreground border",
-              )}
-              aria-current={active ? "page" : undefined}
-            >
-              {via.nombre}
-            </Link>
-          );
-        })}
-      </div>
 
       <RutaTimelineWithProgress via={activeVia} items={items} />
 
