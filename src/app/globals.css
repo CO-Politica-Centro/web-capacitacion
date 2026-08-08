@@ -8,20 +8,24 @@
   --accent: #d4a017;
   --accent-soft: #e8c547;
   --brand-green: #2f6b3a;
-  --muted: #5c6554;
+  --muted: #4a5342;
   --surface: #fffdf7;
+  --border: color-mix(in srgb, var(--foreground) 14%, transparent);
+  --border-strong: color-mix(in srgb, var(--foreground) 28%, transparent);
   --ring: #1a1f16;
 }
 
 .dark {
-  --background: #121510;
-  --foreground: #f2efe6;
+  --background: #141811;
+  --foreground: #f4f1e8;
   --accent: #e0b020;
   --accent-soft: #c9a227;
-  --brand-green: #6db87a;
-  --muted: #a8b09e;
-  --surface: #1c211a;
-  --ring: #f2efe6;
+  --brand-green: #7bc788;
+  --muted: #b6beac;
+  --surface: #1e241c;
+  --border: color-mix(in srgb, var(--foreground) 16%, transparent);
+  --border-strong: color-mix(in srgb, var(--foreground) 32%, transparent);
+  --ring: #f4f1e8;
 }
 
 @theme inline {
@@ -32,6 +36,8 @@
   --color-brand-green: var(--brand-green);
   --color-muted: var(--muted);
   --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-source);
 }
@@ -40,29 +46,30 @@ body {
   background:
     radial-gradient(
       ellipse 80% 50% at 10% -10%,
-      rgb(232 197 71 / 0.35),
+      rgb(232 197 71 / 0.28),
       transparent
     ),
     radial-gradient(
       ellipse 60% 40% at 90% 0%,
-      rgb(47 107 58 / 0.12),
+      rgb(47 107 58 / 0.1),
       transparent
     ),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-source), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
 }
 
 .dark body {
   background:
     radial-gradient(
       ellipse 80% 50% at 10% -10%,
-      rgb(224 176 32 / 0.14),
+      rgb(224 176 32 / 0.1),
       transparent
     ),
     radial-gradient(
       ellipse 60% 40% at 90% 0%,
-      rgb(109 184 122 / 0.1),
+      rgb(109 184 122 / 0.08),
       transparent
     ),
     var(--background);
@@ -73,15 +80,37 @@ h2,
 h3 {
   font-family: var(--font-fraunces), ui-serif, Georgia, serif;
   letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Contenedor de sección con borde y superficie */
+.panel {
+  background-color: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .panel {
+    padding: 1.75rem 1.875rem;
+  }
 }
 
 @keyframes ruta-step-in {
   from {
-    opacity: 0;
     transform: translateY(0.5rem);
   }
   to {
-    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes home-fade-up {
+  from {
+    transform: translateY(0.5rem);
+  }
+  to {
     transform: translateY(0);
   }
 }
@@ -90,13 +119,50 @@ h3 {
   animation: ruta-step-in 0.45s ease-out both;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ruta-step {
-    animation: none;
-  }
+.home-reveal {
+  animation: home-fade-up 0.5s ease-out both;
+}
+
+.home-reveal-delay {
+  animation: home-fade-up 0.5s ease-out 0.1s both;
+}
+
+.home-reveal-delay-2 {
+  animation: home-fade-up 0.5s ease-out 0.18s both;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--foreground);
+  color: var(--background);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-120%);
+  transition: transform 0.15s ease-out;
+}
+
+.skip-link:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  transform: translateY(0.75rem);
 }
 
 :focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.contenido-principal:focus {
+  outline: none;
+}
+
+.contenido-principal:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
@@ -106,7 +172,6 @@ h3 {
   color: var(--foreground);
 }
 
-/* Firefox: solid surface under translucent header chrome */
 @supports not (
   (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
 ) {
@@ -116,10 +181,35 @@ h3 {
 }
 
 .site-chrome {
-  background-color: color-mix(in srgb, var(--surface) 92%, transparent);
+  background-color: color-mix(in srgb, var(--surface) 94%, transparent);
 }
 
 a,
 button {
   -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ruta-step,
+  .home-reveal,
+  .home-reveal-delay,
+  .home-reveal-delay-2 {
+    animation: none;
+  }
+
+  .skip-link {
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

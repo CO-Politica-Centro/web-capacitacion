@@ -49,6 +49,35 @@ service cloud.firestore {
         && request.resource.data.firebaseUid == resource.data.firebaseUid;
     }
 
+    // Self-signup may only create a buyer profile; roles/sellerId are admin-managed later.
+    function validUserCreate() {
+      return request.resource.data.firebaseUid == request.auth.uid
+        && request.resource.data.roles is list
+        && request.resource.data.roles.size() == 1
+        && request.resource.data.roles[0] == 'buyer'
+        && (
+          !('sellerId' in request.resource.data)
+          || request.resource.data.sellerId == null
+          || request.resource.data.sellerId == ''
+        );
+    }
+
+    function validCapacitacionUserWrite() {
+      return request.resource.data.keys().hasOnly(['uid', 'emailUpdatedAt'])
+        && request.resource.data.uid == request.auth.uid;
+    }
+
+    function validLessonProgressWrite() {
+      return request.resource.data.keys().hasOnly(['cursoSlug', 'leccionSlug', 'completedAt'])
+        && request.resource.data.cursoSlug is string
+        && request.resource.data.cursoSlug.size() > 0
+        && request.resource.data.cursoSlug.size() <= 120
+        && request.resource.data.leccionSlug is string
+        && request.resource.data.leccionSlug.size() > 0
+        && request.resource.data.leccionSlug.size() <= 120
+        && request.resource.data.completedAt is timestamp;
+    }
+
     match /categories/{id} {
       allow read: if isAdmin();
       allow write: if isAdmin();
@@ -56,7 +85,7 @@ service cloud.firestore {
 
     match /users/{uid} {
       allow read: if isOwner(uid) || isAdmin();
-      allow create: if isOwner(uid);
+      allow create: if isOwner(uid) && validUserCreate();
       allow update: if isAdmin() || (isOwner(uid) && immutableUserAuthFields());
       allow delete: if isAdmin();
     }
@@ -135,10 +164,14 @@ service cloud.firestore {
 
     // web-capacitacion — progreso de lecciones (colección aislada)
     match /capacitacionUsers/{userId} {
-      allow read, write: if isOwner(userId);
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId) && validCapacitacionUserWrite();
+      allow delete: if isOwner(userId);
 
       match /lessonProgress/{progressId} {
-        allow read, write: if isOwner(userId);
+        allow read: if isOwner(userId);
+        allow create, update: if isOwner(userId) && validLessonProgressWrite();
+        allow delete: if isOwner(userId);
       }
     }
   }

@@ -26,7 +26,9 @@ export function LessonProgressToggle({
 
   if (authLoading || loading) {
     return (
-      <p className={cn("text-muted text-sm", className)}>Cargando progreso…</p>
+      <p className={cn("text-muted text-sm", className)} aria-live="polite">
+        Cargando progreso…
+      </p>
     );
   }
 
@@ -36,14 +38,14 @@ export function LessonProgressToggle({
         ¿Quieres guardar tu avance?{" "}
         <Link
           href="/cuenta/entrar"
-          className="text-brand-green font-semibold underline-offset-4 hover:underline"
+          className="text-brand-green font-semibold underline underline-offset-4"
         >
           Inicia sesión
         </Link>{" "}
         o{" "}
         <Link
           href="/cuenta/registro"
-          className="text-foreground font-semibold underline-offset-4 hover:underline"
+          className="text-foreground font-semibold underline underline-offset-4"
         >
           crea una cuenta
         </Link>
@@ -58,8 +60,10 @@ export function LessonProgressToggle({
     <div className={cn("space-y-2", className)}>
       <button
         type="button"
-        disabled={pending}
+        aria-busy={pending}
+        aria-pressed={done}
         onClick={() => {
+          if (pending) return;
           setError(null);
           setPending(true);
           void toggleComplete(cursoSlug, leccionSlug)
@@ -67,7 +71,8 @@ export function LessonProgressToggle({
             .finally(() => setPending(false));
         }}
         className={cn(
-          "inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition disabled:opacity-60",
+          "inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-sm font-semibold transition",
+          pending && "pointer-events-none opacity-60",
           done
             ? "border-brand-green text-brand-green border bg-transparent"
             : "bg-brand-green text-background hover:bg-foreground",
