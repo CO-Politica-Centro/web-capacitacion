@@ -16,27 +16,28 @@ export function AuthNav({ className }: AuthNavProps) {
   if (loading) {
     return (
       <span
-        className={cn("text-muted hidden text-sm sm:inline", className)}
-        aria-hidden
+        className={cn("text-muted text-sm", className)}
+        aria-busy="true"
+        aria-live="polite"
       >
-        …
+        Cargando…
       </span>
     );
   }
 
   if (user) {
     return (
-      <div className={cn("flex items-center gap-2", className)}>
+      <div className={cn("flex flex-wrap items-center gap-2", className)}>
         <Link
           href="/cuenta/progreso"
-          className="text-muted hover:text-foreground hidden min-h-11 items-center text-sm sm:inline-flex"
+          className="text-muted hover:text-foreground inline-flex min-h-11 items-center text-sm"
         >
           Mi progreso
         </Link>
         <button
           type="button"
           onClick={() => void logOut()}
-          className="border-foreground/15 text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-xl border px-3 text-sm font-medium transition"
+          className="border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-lg border-2 px-3.5 text-sm font-medium transition"
         >
           Salir
         </button>
@@ -48,7 +49,7 @@ export function AuthNav({ className }: AuthNavProps) {
     <Link
       href="/cuenta/entrar"
       className={cn(
-        "border-foreground/15 text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-xl border px-3 text-sm font-medium transition",
+        "border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-lg border-2 px-3.5 text-sm font-medium transition",
         className,
       )}
     >

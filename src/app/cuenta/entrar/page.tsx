@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AuthForm } from "@/components/auth-form";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Iniciar sesión",
   description:
     "Entra para guardar tu progreso en las rutas de capacitación política.",
-};
+  path: "/cuenta/entrar",
+  robots: { index: false, follow: false },
+});
 
 export default function EntrarPage() {
   return (
@@ -24,7 +27,7 @@ export default function EntrarPage() {
       <p className="text-muted mt-10 text-sm">
         <Link
           href="/"
-          className="text-foreground underline-offset-4 hover:underline"
+          className="text-foreground font-medium underline-offset-4 hover:underline"
         >
           Volver al inicio
         </Link>

@@ -3,12 +3,14 @@ import { CatalogFilters } from "@/components/catalog-filters";
 import { CursoCard } from "@/components/curso-card";
 import { ramas } from "@/content/ramas";
 import { getCursos, getRamaById, getVias, isViaSlug } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Cursos",
   description:
     "Catálogo de cursos de concientización política y formación práctica.",
-};
+  path: "/cursos",
+});
 
 type CursosPageProps = {
   searchParams: Promise<{ via?: string; rama?: string }>;

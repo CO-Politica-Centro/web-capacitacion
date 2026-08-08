@@ -1,8 +1,11 @@
 import ReactMarkdown from "react-markdown";
 import { LeccionNav } from "@/components/leccion-nav";
 import { LessonProgressToggle } from "@/components/lesson-progress-toggle";
+import { MarkdownLink } from "@/components/markdown-link";
 import { ProximoPaso } from "@/components/proximo-paso";
 import type { Leccion, LeccionMeta } from "@/content/types";
+
+const markdownComponents = { a: MarkdownLink };
 
 type LeccionArticleProps = {
   leccion: Leccion;
@@ -37,8 +40,10 @@ export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
             {section.heading ? (
               <h2 className="mb-3 text-2xl font-semibold">{section.heading}</h2>
             ) : null}
-            <div className="text-foreground/90 [&_a]:text-brand-green space-y-3 text-base leading-relaxed [&_a]:underline-offset-4 hover:[&_a]:underline [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
-              <ReactMarkdown>{section.body}</ReactMarkdown>
+            <div className="text-foreground/90 [&_a]:text-brand-green space-y-3 text-base leading-relaxed [&_a]:underline [&_a]:underline-offset-4 [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
+              <ReactMarkdown components={markdownComponents}>
+                {section.body}
+              </ReactMarkdown>
             </div>
           </section>
         ))}
@@ -49,8 +54,10 @@ export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
           <p className="text-sm font-semibold tracking-wide uppercase">
             Ejercicio
           </p>
-          <div className="text-muted [&_a]:text-brand-green mt-2 text-sm leading-relaxed">
-            <ReactMarkdown>{leccion.ejercicio}</ReactMarkdown>
+          <div className="text-muted [&_a]:text-brand-green mt-2 text-sm leading-relaxed [&_a]:underline [&_a]:underline-offset-4">
+            <ReactMarkdown components={markdownComponents}>
+              {leccion.ejercicio}
+            </ReactMarkdown>
           </div>
         </aside>
       ) : null}

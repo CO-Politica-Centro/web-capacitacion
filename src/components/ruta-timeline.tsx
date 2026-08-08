@@ -24,12 +24,12 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
         <p className="text-brand-green text-sm font-semibold tracking-[0.18em] uppercase">
           Ruta · {via.nombre}
         </p>
-        <h2
+        <h1
           id={`ruta-${via.slug}`}
           className="text-3xl font-semibold sm:text-4xl"
         >
           {via.tagline}
-        </h2>
+        </h1>
         <p className="text-muted text-base leading-relaxed">
           {via.descripcion}
         </p>
@@ -92,6 +92,7 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
                     aria-valuenow={Math.round(ratio * 100)}
                     aria-valuemin={0}
                     aria-valuemax={100}
+                    aria-valuetext={`${Math.round(ratio * 100)} por ciento completado`}
                     aria-label={`Progreso del curso ${item.curso.titulo}`}
                   >
                     <div
@@ -106,28 +107,23 @@ export function RutaTimeline({ via, items }: RutaTimelineProps) {
               ) : null}
               <p className="mt-2 text-sm">
                 {published ? (
-                  <Link
-                    href={`/cursos/${item.curso.slug}`}
-                    className="text-brand-green font-semibold underline-offset-4 hover:underline"
-                  >
-                    Abrir curso · {item.curso.duracionMin} min
-                  </Link>
-                ) : (
                   <span className="text-muted">
-                    Próximamente · outline disponible
+                    {item.curso.duracionMin} min
                   </span>
-                )}
-                {!published ? (
+                ) : (
                   <>
+                    <span className="text-muted">
+                      Próximamente · outline disponible
+                    </span>
                     {" · "}
                     <Link
                       href={`/cursos/${item.curso.slug}`}
-                      className="underline-offset-4 hover:underline"
+                      className="underline underline-offset-4"
                     >
                       Ver objetivos
                     </Link>
                   </>
-                ) : null}
+                )}
               </p>
             </li>
           );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { MarkdownLink } from "@/components/markdown-link";
 import type { Recurso, RecursoTipo } from "@/content/types";
 
 const tipoLabel: Record<RecursoTipo, string> = {
@@ -12,6 +13,8 @@ const tipoLabel: Record<RecursoTipo, string> = {
 function isExternal(href?: string) {
   return Boolean(href && /^https?:\/\//.test(href));
 }
+
+const markdownComponents = { a: MarkdownLink };
 
 type RecursoListProps = {
   recursos: Recurso[];
@@ -31,7 +34,9 @@ export function RecursoList({ recursos }: RecursoListProps) {
         return (
           <li
             key={recurso.id}
-            id={recurso.tipo === "glosario" ? "glosario" : undefined}
+            id={
+              recurso.tipo === "glosario" ? `glosario-${recurso.id}` : undefined
+            }
             className="py-6"
           >
             <p className="text-brand-green text-xs font-semibold tracking-wide uppercase">
@@ -41,11 +46,22 @@ export function RecursoList({ recursos }: RecursoListProps) {
               {recurso.href ? (
                 <Link
                   href={recurso.href}
-                  className="hover:text-brand-green underline-offset-4 hover:underline"
-                  {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  className="hover:text-brand-green underline underline-offset-4"
+                  {...(external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                 >
                   {recurso.titulo}
-                  {external ? " ↗" : ""}
+                  {external ? (
+                    <>
+                      {" "}
+                      <span aria-hidden>↗</span>
+                      <span className="sr-only">
+                        {" "}
+                        (se abre en una pestaña nueva)
+                      </span>
+                    </>
+                  ) : null}
                 </Link>
               ) : (
                 recurso.titulo
@@ -55,8 +71,10 @@ export function RecursoList({ recursos }: RecursoListProps) {
               {recurso.resumen}
             </p>
             {recurso.cuerpo ? (
-              <div className="text-foreground/90 mt-4 max-w-[65ch] space-y-2 text-sm leading-relaxed [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
-                <ReactMarkdown>{recurso.cuerpo}</ReactMarkdown>
+              <div className="text-foreground/90 [&_a]:text-brand-green mt-4 max-w-[65ch] space-y-2 text-sm leading-relaxed [&_a]:underline [&_a]:underline-offset-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
+                <ReactMarkdown components={markdownComponents}>
+                  {recurso.cuerpo}
+                </ReactMarkdown>
               </div>
             ) : null}
           </li>

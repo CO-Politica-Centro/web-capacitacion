@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AuthForm } from "@/components/auth-form";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Crear cuenta",
   description:
     "Regístrate para guardar progreso en cursos y rutas de capacitación.",
-};
+  path: "/cuenta/registro",
+  robots: { index: false, follow: false },
+});
 
 export default function RegistroPage() {
   return (
