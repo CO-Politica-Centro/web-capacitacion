@@ -3,6 +3,7 @@
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   type User,
@@ -23,6 +24,7 @@ type AuthContextValue = {
   configured: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
   logOut: () => Promise<void>;
 };
 
@@ -39,7 +41,7 @@ function mapAuthError(error: unknown): string {
 
   switch (code) {
     case "auth/email-already-in-use":
-      return "Ese correo ya tiene una cuenta.";
+      return "No se pudo crear la cuenta con esos datos. Prueba iniciar sesión o recuperar la contraseña.";
     case "auth/invalid-email":
       return "El correo no es válido.";
     case "auth/invalid-credential":
@@ -47,7 +49,7 @@ function mapAuthError(error: unknown): string {
     case "auth/user-not-found":
       return "Correo o contraseña incorrectos.";
     case "auth/weak-password":
-      return "La contraseña debe tener al menos 6 caracteres.";
+      return "La contraseña debe tener al menos 8 caracteres.";
     case "auth/too-many-requests":
       return "Demasiados intentos. Espera un momento.";
     case "auth/network-request-failed":
@@ -93,6 +95,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           await createUserWithEmailAndPassword(auth, email.trim(), password);
         } catch (error) {
           throw new Error(mapAuthError(error));
+        }
+      },
+      async resetPassword(email) {
+        const auth = getFirebaseAuth();
+        if (!auth) throw new Error("Firebase no está configurado.");
+        try {
+          await sendPasswordResetEmail(auth, email.trim());
+        } catch (error) {
+          // Generic message to avoid email enumeration.
+          if (
+            typeof error === "object" &&
+            error !== null &&
+            "code" in error &&
+            (error as { code: string }).code === "auth/invalid-email"
+          ) {
+            throw new Error("El correo no es válido.");
+          }
+          // Still succeed from the user's perspective for unknown emails.
         }
       },
       async logOut() {

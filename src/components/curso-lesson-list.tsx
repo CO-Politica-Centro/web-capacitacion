@@ -34,8 +34,11 @@ export function CursoLessonList({
               {published ? (
                 <Link
                   href={`/cursos/${cursoSlug}/${leccion.slug}`}
+                  aria-label={
+                    done ? `${leccion.titulo} (completada)` : leccion.titulo
+                  }
                   className={cn(
-                    "font-semibold underline-offset-4 hover:underline",
+                    "font-semibold underline underline-offset-4",
                     done && "text-brand-green",
                   )}
                 >
@@ -45,7 +48,10 @@ export function CursoLessonList({
                 <span className="font-semibold">{leccion.titulo}</span>
               )}
               {done ? (
-                <span className="text-brand-green text-xs font-semibold">
+                <span
+                  className="text-brand-green text-xs font-semibold"
+                  aria-hidden
+                >
                   Hecha
                 </span>
               ) : null}

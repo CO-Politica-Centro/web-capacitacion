@@ -4,13 +4,15 @@ import { RecursoList } from "@/components/recurso-list";
 import { ramas } from "@/content/ramas";
 import type { RecursoTipo } from "@/content/types";
 import { getRecursos, getVias, isViaSlug } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Recursos",
   description:
     "Biblioteca de guías, lecturas, glosario y enlaces para formación ciudadana.",
-};
+  path: "/recursos",
+});
 
 const tipos: RecursoTipo[] = ["guia", "lectura", "glosario", "enlace"];
 
@@ -57,11 +59,15 @@ export default async function RecursosPage({
       </div>
 
       <div className="mt-10 space-y-4 text-sm">
-        <div className="flex flex-wrap gap-x-4 gap-y-2">
+        <nav
+          aria-label="Filtrar por tipo"
+          className="flex flex-wrap gap-x-4 gap-y-2"
+        >
           <Link
             href={hrefFor({ via, rama })}
+            aria-current={!tipo ? "true" : undefined}
             className={cn(
-              "font-semibold underline-offset-4 hover:underline",
+              "inline-flex min-h-11 items-center font-semibold underline-offset-4 hover:underline",
               !tipo ? "text-foreground" : "text-muted",
             )}
           >
@@ -71,20 +77,25 @@ export default async function RecursosPage({
             <Link
               key={t}
               href={hrefFor({ tipo: t, via, rama })}
+              aria-current={tipo === t ? "true" : undefined}
               className={cn(
-                "font-semibold underline-offset-4 hover:underline",
+                "inline-flex min-h-11 items-center font-semibold underline-offset-4 hover:underline",
                 tipo === t ? "text-foreground" : "text-muted",
               )}
             >
               {tipoLabel[t]}
             </Link>
           ))}
-        </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-2">
+        </nav>
+        <nav
+          aria-label="Filtrar por vía"
+          className="flex flex-wrap gap-x-4 gap-y-2"
+        >
           <Link
             href={hrefFor({ tipo, rama })}
+            aria-current={!via ? "true" : undefined}
             className={cn(
-              "underline-offset-4 hover:underline",
+              "inline-flex min-h-11 items-center underline-offset-4 hover:underline",
               !via ? "text-foreground font-medium" : "text-muted",
             )}
           >
@@ -94,20 +105,25 @@ export default async function RecursosPage({
             <Link
               key={v.id}
               href={hrefFor({ tipo, via: v.slug })}
+              aria-current={via === v.slug ? "true" : undefined}
               className={cn(
-                "underline-offset-4 hover:underline",
+                "inline-flex min-h-11 items-center underline-offset-4 hover:underline",
                 via === v.slug ? "text-foreground font-medium" : "text-muted",
               )}
             >
               {v.nombre}
             </Link>
           ))}
-        </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-2">
+        </nav>
+        <nav
+          aria-label="Filtrar por rama"
+          className="flex flex-wrap gap-x-4 gap-y-2"
+        >
           <Link
             href={hrefFor({ tipo, via })}
+            aria-current={!rama ? "true" : undefined}
             className={cn(
-              "underline-offset-4 hover:underline",
+              "inline-flex min-h-11 items-center underline-offset-4 hover:underline",
               !rama ? "text-foreground font-medium" : "text-muted",
             )}
           >
@@ -117,15 +133,16 @@ export default async function RecursosPage({
             <Link
               key={r.id}
               href={hrefFor({ tipo, via: r.viaId, rama: r.slug })}
+              aria-current={rama === r.slug ? "true" : undefined}
               className={cn(
-                "underline-offset-4 hover:underline",
+                "inline-flex min-h-11 items-center underline-offset-4 hover:underline",
                 rama === r.slug ? "text-foreground font-medium" : "text-muted",
               )}
             >
               {r.nombre}
             </Link>
           ))}
-        </div>
+        </nav>
       </div>
 
       <div className="mt-10">

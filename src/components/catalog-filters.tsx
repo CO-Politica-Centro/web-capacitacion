@@ -17,6 +17,9 @@ function buildHref(via?: string, rama?: string) {
   return q ? `/cursos?${q}` : "/cursos";
 }
 
+const chipClass =
+  "inline-flex min-h-11 items-center underline-offset-4 hover:underline";
+
 export function CatalogFilters({
   vias,
   ramas,
@@ -29,11 +32,16 @@ export function CatalogFilters({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+      <nav
+        aria-label="Filtrar por vía"
+        className="flex flex-wrap gap-x-4 gap-y-2 text-sm"
+      >
         <Link
           href="/cursos"
+          aria-current={!activeVia ? "true" : undefined}
           className={cn(
-            "font-semibold underline-offset-4 hover:underline",
+            chipClass,
+            "font-semibold",
             !activeVia ? "text-foreground" : "text-muted",
           )}
         >
@@ -43,21 +51,27 @@ export function CatalogFilters({
           <Link
             key={via.id}
             href={buildHref(via.slug)}
+            aria-current={activeVia === via.slug ? "true" : undefined}
             className={cn(
-              "font-semibold underline-offset-4 hover:underline",
+              chipClass,
+              "font-semibold",
               activeVia === via.slug ? "text-foreground" : "text-muted",
             )}
           >
             {via.nombre}
           </Link>
         ))}
-      </div>
+      </nav>
       {ramasForVia.length > 0 ? (
-        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+        <nav
+          aria-label="Filtrar por rama"
+          className="flex flex-wrap gap-x-4 gap-y-2 text-sm"
+        >
           <Link
             href={buildHref(activeVia)}
+            aria-current={!activeRama ? "true" : undefined}
             className={cn(
-              "underline-offset-4 hover:underline",
+              chipClass,
               !activeRama ? "text-foreground font-medium" : "text-muted",
             )}
           >
@@ -67,8 +81,9 @@ export function CatalogFilters({
             <Link
               key={rama.id}
               href={buildHref(rama.viaId, rama.slug)}
+              aria-current={activeRama === rama.slug ? "true" : undefined}
               className={cn(
-                "underline-offset-4 hover:underline",
+                chipClass,
                 activeRama === rama.slug
                   ? "text-foreground font-medium"
                   : "text-muted",
@@ -77,7 +92,7 @@ export function CatalogFilters({
               {rama.nombre}
             </Link>
           ))}
-        </div>
+        </nav>
       ) : null}
     </div>
   );
