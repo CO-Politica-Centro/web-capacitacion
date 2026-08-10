@@ -2,7 +2,6 @@ import ReactMarkdown from "react-markdown";
 import { LeccionNav } from "@/components/leccion-nav";
 import { LessonProgressToggle } from "@/components/lesson-progress-toggle";
 import { MarkdownLink } from "@/components/markdown-link";
-import { ProximoPaso } from "@/components/proximo-paso";
 import type { Leccion, LeccionMeta } from "@/content/types";
 
 const markdownComponents = { a: MarkdownLink };
@@ -15,7 +14,7 @@ type LeccionArticleProps = {
 
 export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
   return (
-    <article className="mx-auto max-w-[65ch]">
+    <article>
       <p className="text-muted text-base">{leccion.minutos} min de lectura</p>
       <h1 className="mt-2 text-4xl leading-tight font-semibold">
         {leccion.titulo}
@@ -68,11 +67,12 @@ export function LeccionArticle({ leccion, prev, next }: LeccionArticleProps) {
         className="mt-10"
       />
 
-      {leccion.siguientePaso ? (
-        <ProximoPaso paso={leccion.siguientePaso} />
-      ) : null}
-
-      <LeccionNav cursoSlug={leccion.cursoSlug} prev={prev} next={next} />
+      <LeccionNav
+        cursoSlug={leccion.cursoSlug}
+        prev={prev}
+        next={next}
+        siguientePaso={next ? undefined : leccion.siguientePaso}
+      />
     </article>
   );
 }

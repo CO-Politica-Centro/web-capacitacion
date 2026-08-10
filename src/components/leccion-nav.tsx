@@ -1,39 +1,64 @@
 import Link from "next/link";
-import type { LeccionMeta } from "@/content/types";
+import type { LeccionMeta, SiguientePaso } from "@/content/types";
 
 type LeccionNavProps = {
   cursoSlug: string;
   prev: LeccionMeta | null;
   next: LeccionMeta | null;
+  /** Used at end of course when bridging to the next course or path */
+  siguientePaso?: SiguientePaso;
 };
 
-export function LeccionNav({ cursoSlug, prev, next }: LeccionNavProps) {
+export function LeccionNav({
+  cursoSlug,
+  prev,
+  next,
+  siguientePaso,
+}: LeccionNavProps) {
+  const nextHref = next
+    ? `/cursos/${cursoSlug}/${next.slug}`
+    : (siguientePaso?.href ?? null);
+  const nextLabel = next
+    ? next.titulo
+    : (siguientePaso?.label.replace(/^Siguiente:\s*/i, "") ?? null);
+  const nextEyebrow = next
+    ? "Siguiente"
+    : siguientePaso
+      ? "Siguiente paso"
+      : null;
+
   return (
     <nav
-      className="border-foreground/10 mt-12 flex flex-wrap items-start justify-between gap-4 border-t pt-6 text-base"
+      className="border-foreground/10 mt-12 flex flex-wrap items-start justify-between gap-6 border-t pt-6 text-base"
       aria-label="Navegación de lecciones"
     >
-      <div>
+      <div className="min-w-0 max-w-sm">
         {prev ? (
           <Link
             href={`/cursos/${cursoSlug}/${prev.slug}`}
-            className="hover:text-brand-green group block max-w-xs underline-offset-4 hover:underline"
+            className="hover:text-brand-green group block underline-offset-4 hover:underline"
           >
             <span className="text-muted block text-sm">Anterior</span>
             <span className="font-semibold">{prev.titulo}</span>
           </Link>
         ) : (
-          <span className="text-muted text-sm">Inicio del curso</span>
+          <Link
+            href={`/cursos/${cursoSlug}`}
+            className="hover:text-brand-green group block underline-offset-4 hover:underline"
+          >
+            <span className="text-muted block text-sm">Curso</span>
+            <span className="font-semibold">Volver al inicio del curso</span>
+          </Link>
         )}
       </div>
-      <div className="text-right">
-        {next ? (
+      <div className="min-w-0 max-w-sm text-right">
+        {nextHref && nextLabel && nextEyebrow ? (
           <Link
-            href={`/cursos/${cursoSlug}/${next.slug}`}
-            className="hover:text-brand-green group block max-w-xs underline-offset-4 hover:underline"
+            href={nextHref}
+            className="hover:text-brand-green group block underline-offset-4 hover:underline"
           >
-            <span className="text-muted block text-sm">Siguiente</span>
-            <span className="font-semibold">{next.titulo}</span>
+            <span className="text-muted block text-sm">{nextEyebrow}</span>
+            <span className="font-semibold">{nextLabel}</span>
           </Link>
         ) : (
           <span className="text-muted text-sm">Fin del curso</span>
