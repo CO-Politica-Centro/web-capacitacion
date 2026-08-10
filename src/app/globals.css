@@ -198,6 +198,16 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+a[href],
+button:not(:disabled):not([aria-busy="true"]) {
+  cursor: pointer;
+}
+
+button:disabled,
+button[aria-busy="true"] {
+  cursor: not-allowed;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

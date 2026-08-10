@@ -72,7 +72,7 @@ export function LessonProgressToggle({
         }}
         className={cn(
           "inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition",
-          pending && "pointer-events-none opacity-60",
+          pending && "opacity-60",
           done
             ? "border-brand-green text-brand-green border bg-transparent"
             : "bg-brand-green text-background hover:bg-foreground",
