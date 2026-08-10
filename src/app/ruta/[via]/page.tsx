@@ -65,13 +65,6 @@ export default async function RutaViaPage({ params }: RutaViaPageProps) {
           className="text-foreground underline-offset-4 hover:underline"
         >
           hub de la vía
-        </Link>
-        , el{" "}
-        <Link
-          href={`/cursos?via=${viaParam}`}
-          className="text-foreground underline-offset-4 hover:underline"
-        >
-          catálogo de cursos
         </Link>{" "}
         o la{" "}
         <Link

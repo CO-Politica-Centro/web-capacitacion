@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ViaRamasTimeline } from "@/app/via/[via]/_components/via-ramas-timeline";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   getCursos,
@@ -65,73 +66,46 @@ export default async function ViaHubPage({ params }: ViaPageProps) {
             Ver ruta paso a paso
           </Link>
           <Link
-            href={`/cursos?via=${via.slug}`}
+            href="/recursos"
             className="border-border-strong bg-surface text-foreground hover:border-accent inline-flex min-h-12 items-center rounded-lg border-2 px-6 py-3 text-base font-semibold transition-colors"
           >
-            Catálogo de cursos
+            Biblioteca de recursos
           </Link>
         </div>
       </div>
 
       <section
-        className="mt-14 space-y-5 sm:mt-16"
+        className="mt-14 space-y-6 sm:mt-16"
         aria-labelledby="ramas-heading"
       >
         <h2 id="ramas-heading" className="text-2xl font-semibold">
-          Ramas de esta vía
+          Ruta de esta vía
         </h2>
-        <ol className="grid gap-4 sm:gap-5">
-          {ramas.map((rama, index) => {
-            const curso = cursos.find((c) => c.ramaId === rama.id);
-            return (
-              <li key={rama.id} className="panel">
-                <p className="text-brand-green text-sm font-semibold tracking-wide uppercase">
-                  Rama {index + 1}
-                </p>
-                <h3 className="mt-2 text-xl font-semibold">{rama.nombre}</h3>
-                <p className="text-muted mt-2 max-w-2xl text-base leading-relaxed">
-                  {rama.resumen}
-                </p>
-                {curso ? (
-                  <p className="mt-4 text-base">
-                    <Link
-                      href={`/cursos/${curso.slug}`}
-                      className="text-brand-green font-semibold underline-offset-4 hover:underline"
-                    >
-                      {curso.titulo}
-                    </Link>
-                    <span className="text-muted">
-                      {" "}
-                      · {curso.leccionesMeta.length} lecciones ·{" "}
-                      {curso.duracionMin} min
-                    </span>
-                  </p>
-                ) : null}
-              </li>
-            );
-          })}
-        </ol>
+        <ViaRamasTimeline
+          steps={ramas.map((rama) => ({
+            rama,
+            curso: cursos.find((c) => c.ramaId === rama.id),
+          }))}
+        />
       </section>
 
-      <div className="border-border bg-surface mt-12 rounded-2xl border px-5 py-5 sm:px-6">
-        <p className="text-muted text-base leading-relaxed">
-          También puedes abrir la{" "}
-          <Link
-            href={`/ruta/${via.slug}`}
-            className="text-foreground font-semibold underline-offset-4 hover:underline"
-          >
-            ruta guiada
-          </Link>{" "}
-          o la{" "}
-          <Link
-            href="/recursos"
-            className="text-foreground font-semibold underline-offset-4 hover:underline"
-          >
-            biblioteca de recursos
-          </Link>
-          .
-        </p>
-      </div>
+      <p className="text-muted mt-12 text-base leading-relaxed">
+        También puedes abrir la{" "}
+        <Link
+          href={`/ruta/${via.slug}`}
+          className="text-foreground font-semibold underline-offset-4 hover:underline"
+        >
+          ruta guiada
+        </Link>{" "}
+        o la{" "}
+        <Link
+          href="/recursos"
+          className="text-foreground font-semibold underline-offset-4 hover:underline"
+        >
+          biblioteca de recursos
+        </Link>
+        .
+      </p>
     </div>
   );
 }

@@ -36,7 +36,6 @@ Sin variables Firebase la web funciona igual (contenido público); solo se desac
 - `/` — elección de vía
 - `/via/[via]` — hub de vía (`concientizacion` \| `practica`)
 - `/ruta/[via]` — itinerario paso a paso (también `/ruta?via=` redirige)
-- `/cursos` — catálogo (`?via=` / `?rama=`)
 - `/cursos/[slug]` — detalle del curso
 - `/cursos/[slug]/[leccion]` — lección (marcar progreso si hay sesión)
 - `/recursos` — biblioteca (`?tipo=` / `?via=` / `?rama=`)

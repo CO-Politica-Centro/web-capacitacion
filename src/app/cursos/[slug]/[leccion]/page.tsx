@@ -55,9 +55,8 @@ export default async function LeccionPage({ params }: LeccionPageProps) {
 
   const breadcrumbItems = [
     { label: "Inicio", href: "/" },
-    { label: "Cursos", href: "/cursos" },
-    { label: curso.titulo, href: `/cursos/${curso.slug}` },
     { label: "Ruta", href: `/ruta/${viaSlug}` },
+    { label: curso.titulo, href: `/cursos/${curso.slug}` },
     { label: leccion.titulo },
   ];
 

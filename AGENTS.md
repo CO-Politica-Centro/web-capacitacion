@@ -50,7 +50,7 @@ Calidad: `pnpm run ci`
 ## Estructura
 
 ```
-src/app/           # rutas (/, /cursos, /recursos, /ruta)
+src/app/           # rutas (/, /via, /ruta, /recursos, /cursos/[slug])
 src/components/    # UI compartida
 src/lib/           # utils (cn, etc.)
 src/hooks/         # hooks transversales

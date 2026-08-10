@@ -19,7 +19,7 @@ export default function NotFound() {
         </h1>
         <p className="text-muted leading-relaxed">
           El enlace puede estar roto o la página ya no existe. Puedes volver al
-          inicio o seguir formándote en cursos y rutas.
+          inicio o seguir formándote en las rutas.
         </p>
         <div className="flex flex-wrap gap-3 pt-2">
           <Link
@@ -29,16 +29,16 @@ export default function NotFound() {
             Ir al inicio
           </Link>
           <Link
-            href="/cursos"
+            href="/ruta/concientizacion"
             className="border-border-strong text-foreground hover:bg-foreground/5 inline-flex min-h-11 items-center rounded-md border-2 px-5 py-2.5 text-base font-medium transition"
           >
-            Ver cursos
+            Abrir ruta
           </Link>
           <Link
-            href="/ruta/concientizacion"
+            href="/recursos"
             className="text-muted hover:text-foreground inline-flex min-h-11 items-center px-2 text-base underline-offset-4 hover:underline"
           >
-            Abrir ruta
+            Recursos
           </Link>
         </div>
       </div>

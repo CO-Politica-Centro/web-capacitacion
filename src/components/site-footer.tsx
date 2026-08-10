@@ -3,7 +3,8 @@ import { LinkUnderline } from "@/components/link-underline";
 import Link from "next/link";
 
 const aprenderLinks = [
-  { href: "/cursos", label: "Cursos" },
+  { href: "/via/concientizacion", label: "Concientización" },
+  { href: "/via/practica", label: "Formación práctica" },
   { href: "/recursos", label: "Recursos" },
 ] as const;
 

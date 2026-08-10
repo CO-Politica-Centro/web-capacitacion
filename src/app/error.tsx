@@ -38,10 +38,10 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
             Ir al inicio
           </Link>
           <Link
-            href="/cursos"
+            href="/ruta/concientizacion"
             className="text-muted hover:text-foreground inline-flex min-h-11 items-center px-2 text-base underline-offset-4 hover:underline"
           >
-            Ver cursos
+            Abrir ruta
           </Link>
         </div>
       </div>

@@ -10,7 +10,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/cursos", label: "Cursos", match: "/cursos" },
   {
     href: "/ruta/concientizacion",
     label: "Concientización",

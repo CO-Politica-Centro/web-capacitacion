@@ -44,9 +44,11 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
 
   const breadcrumbItems = [
     { label: "Inicio", href: "/" },
-    { label: "Cursos", href: "/cursos" },
     ...(via
-      ? [{ label: `Ruta ${via.nombre}`, href: `/ruta/${via.slug}` }]
+      ? [
+          { label: via.nombre, href: `/via/${via.slug}` },
+          { label: "Ruta", href: `/ruta/${via.slug}` },
+        ]
       : []),
     { label: curso.titulo },
   ];
@@ -112,12 +114,20 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
 
       <div className="mt-10 flex flex-wrap gap-3">
         {published && firstLesson ? (
-          <Link
-            href={`/cursos/${curso.slug}/${firstLesson.slug}`}
-            className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition"
-          >
-            Empezar curso
-          </Link>
+          <>
+            <Link
+              href={`/cursos/${curso.slug}/${firstLesson.slug}`}
+              className="bg-foreground text-background hover:bg-brand-green inline-flex min-h-11 items-center rounded-md px-5 py-2.5 text-base font-semibold transition"
+            >
+              Empezar curso
+            </Link>
+            <Link
+              href={via ? `/ruta/${via.slug}` : "/ruta/concientizacion"}
+              className="border-foreground/20 bg-surface hover:border-accent inline-flex min-h-11 items-center rounded-md border px-5 py-2.5 text-base font-semibold transition"
+            >
+              Ver ruta
+            </Link>
+          </>
         ) : (
           <Link
             href={via ? `/ruta/${via.slug}` : "/ruta/concientizacion"}
@@ -126,12 +136,6 @@ export default async function CursoDetailPage({ params }: CursoPageProps) {
             Volver a la ruta
           </Link>
         )}
-        <Link
-          href="/cursos"
-          className="border-foreground/20 bg-surface hover:border-accent inline-flex min-h-11 items-center rounded-md border px-5 py-2.5 text-base font-semibold transition"
-        >
-          Ver catálogo
-        </Link>
       </div>
     </div>
   );
