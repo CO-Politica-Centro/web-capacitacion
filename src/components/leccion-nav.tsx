@@ -32,7 +32,7 @@ export function LeccionNav({
       className="border-foreground/10 mt-12 flex flex-wrap items-start justify-between gap-6 border-t pt-6 text-base"
       aria-label="Navegación de lecciones"
     >
-      <div className="min-w-0 max-w-sm">
+      <div className="max-w-sm min-w-0">
         {prev ? (
           <Link
             href={`/cursos/${cursoSlug}/${prev.slug}`}
@@ -51,7 +51,7 @@ export function LeccionNav({
           </Link>
         )}
       </div>
-      <div className="min-w-0 max-w-sm text-right">
+      <div className="max-w-sm min-w-0 text-right">
         {nextHref && nextLabel && nextEyebrow ? (
           <Link
             href={nextHref}
