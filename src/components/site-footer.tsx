@@ -32,8 +32,6 @@ const movimientoLinks = [
   },
 ] as const;
 
-const year = new Date().getFullYear();
-
 function FooterNavLink({
   href,
   label,
@@ -87,6 +85,8 @@ function FooterColumn({
 }
 
 export function SiteFooter() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-border bg-surface/80 border-t">
       <div className="mx-auto max-w-5xl px-6 pt-14 pb-8">
