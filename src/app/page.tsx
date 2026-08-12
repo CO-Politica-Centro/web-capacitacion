@@ -3,11 +3,11 @@ import { ViaCard } from "@/app/_components/via-card";
 import { BrandMark } from "@/components/brand-mark";
 import { ViaChooser } from "@/components/via-chooser";
 import { getVias } from "@/lib/content";
-import { defaultSiteDescription, pageMetadata } from "@/lib/seo";
+import { pageMetadata, SITE_SEO } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Capacitación política — CO Politica Centro",
-  description: defaultSiteDescription,
+  title: SITE_SEO.titleDefault,
+  description: SITE_SEO.description,
   path: "/",
 });
 

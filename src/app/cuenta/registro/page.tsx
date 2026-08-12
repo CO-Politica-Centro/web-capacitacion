@@ -4,9 +4,9 @@ import { AuthForm } from "@/components/auth-form";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Crear cuenta",
+  title: "Crea tu cuenta y no pierdas el ritmo",
   description:
-    "Regístrate para guardar progreso en cursos y rutas de capacitación.",
+    "Regístrate gratis para guardar avances en cursos y rutas de la escuela política abierta.",
   path: "/cuenta/registro",
   robots: { index: false, follow: false },
 });

@@ -8,9 +8,9 @@ import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Recursos",
+  title: "Recursos para formarte ya",
   description:
-    "Biblioteca de guías, lecturas, glosario y enlaces para formación ciudadana.",
+    "Guías, lecturas, glosario y enlaces listos para estudiar política con criterio y pasarlo a la acción.",
   path: "/recursos",
 });
 

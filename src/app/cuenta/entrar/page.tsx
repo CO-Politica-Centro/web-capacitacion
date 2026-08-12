@@ -4,9 +4,9 @@ import { AuthForm } from "@/components/auth-form";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Iniciar sesión",
+  title: "Entra y guarda tu avance",
   description:
-    "Entra para guardar tu progreso en las rutas de capacitación política.",
+    "Inicia sesión para conservar tu progreso en las rutas de capacitación política de Centro.",
   path: "/cuenta/entrar",
   robots: { index: false, follow: false },
 });

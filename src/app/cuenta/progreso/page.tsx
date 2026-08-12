@@ -4,8 +4,9 @@ import { ProgressDashboard } from "@/components/progress-dashboard";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Mi progreso",
-  description: "Avances guardados en cursos y rutas de capacitación.",
+  title: "Tu progreso en la escuela",
+  description:
+    "Revisa qué cursos y lecciones ya avanzaste en Capacitación Centro.",
   path: "/cuenta/progreso",
   robots: { index: false, follow: false },
 });

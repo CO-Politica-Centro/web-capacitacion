@@ -1,23 +1,32 @@
 import type { Metadata } from "next";
 
-const DEFAULT_DESCRIPTION =
-  "Escuela abierta de CO Politica Centro: concientización política y formación práctica con rutas guiadas para Colombia.";
+const FALLBACK_SITE_URL = "https://web-capacitacion-co-politica.vercel.app";
 
 export function getSiteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL;
-  if (!raw) return "http://localhost:3000";
+  const raw = process.env.NEXT_PUBLIC_SITE_URL ?? FALLBACK_SITE_URL;
   try {
     return new URL(raw).origin;
   } catch {
-    return "http://localhost:3000";
+    return FALLBACK_SITE_URL;
   }
 }
+
+export const SITE_SEO = {
+  titleDefault: "Capacitación Centro — Escuela política abierta",
+  titleTemplate: "%s · Capacitación Centro",
+  description:
+    "Aprende política con rutas guiadas: concientización y formación práctica para actuar en Colombia.",
+  siteName: "Capacitación · CO Politica Centro",
+  ogAlt: "Capacitación Centro — Escuela abierta de CO Politica Centro",
+} as const;
+
+export const defaultSiteDescription = SITE_SEO.description;
 
 type PageMetaInput = {
   title: string;
   description: string;
   path: string;
-  /** Absolute path or leave default social image */
+  /** Absolute URL or path under public/. Omit to use root opengraph-image. */
   image?: string;
   type?: "website" | "article";
   robots?: Metadata["robots"];
@@ -28,11 +37,15 @@ export function pageMetadata({
   title,
   description,
   path,
-  image = "/brand/og-social.png",
+  image,
   type = "website",
   robots,
 }: PageMetaInput): Metadata {
   const canonical = path.startsWith("/") ? path : `/${path}`;
+  const images = image
+    ? [{ url: image, width: 1200, height: 630, alt: title }]
+    : undefined;
+
   return {
     title,
     description,
@@ -43,15 +56,15 @@ export function pageMetadata({
       description,
       url: canonical,
       type,
-      images: [{ url: image, width: 1200, height: 630 }],
+      locale: "es_CO",
+      siteName: SITE_SEO.siteName,
+      ...(images ? { images } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      ...(image ? { images: [image] } : {}),
     },
   };
 }
-
-export const defaultSiteDescription = DEFAULT_DESCRIPTION;

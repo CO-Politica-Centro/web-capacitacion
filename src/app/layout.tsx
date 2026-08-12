@@ -5,7 +5,7 @@ import { AuthProvider } from "@/components/auth-provider";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getSiteUrl } from "@/lib/seo";
+import { getSiteUrl, SITE_SEO } from "@/lib/seo";
 import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
@@ -19,25 +19,23 @@ const body = Source_Sans_3({
   subsets: ["latin"],
 });
 
-function siteMetadataBase(): URL {
-  const fallback = "http://localhost:3000";
-  const raw = process.env.NEXT_PUBLIC_SITE_URL;
-  if (!raw) return new URL(fallback);
-  try {
-    return new URL(raw);
-  } catch {
-    return new URL(fallback);
-  }
-}
-
 export const metadata: Metadata = {
   title: {
-    default: "Capacitación política — CO Politica Centro",
-    template: "%s · Capacitación Centro",
+    default: SITE_SEO.titleDefault,
+    template: SITE_SEO.titleTemplate,
   },
-  description:
-    "Escuela abierta de CO Politica Centro: concientización política y formación práctica con rutas guiadas para Colombia.",
-  metadataBase: siteMetadataBase(),
+  description: SITE_SEO.description,
+  metadataBase: new URL(getSiteUrl()),
+  applicationName: SITE_SEO.siteName,
+  authors: [{ name: "CO Politica Centro" }],
+  creator: "CO Politica Centro",
+  keywords: [
+    "capacitación política",
+    "formación ciudadana",
+    "CO Politica Centro",
+    "escuela política",
+    "Colombia",
+  ],
   icons: {
     icon: [
       { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
@@ -48,20 +46,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_CO",
-    siteName: "Capacitación · CO Politica Centro",
-    images: [
-      {
-        url: "/brand/og-social.png",
-        width: 1200,
-        height: 630,
-        alt: "Capacitación · CO Politica Centro",
-      },
-    ],
+    siteName: SITE_SEO.siteName,
+    title: SITE_SEO.titleDefault,
+    description: SITE_SEO.description,
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/brand/og-social.png"],
+    title: SITE_SEO.titleDefault,
+    description: SITE_SEO.description,
   },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
@@ -86,6 +80,8 @@ export default function RootLayout({
         name: "Capacitación · CO Politica Centro",
         url: siteUrl,
         inLanguage: "es-CO",
+        description:
+          "Aprende política con rutas guiadas: concientización y formación práctica para actuar en Colombia.",
         publisher: { "@id": `${siteUrl}/#organization` },
       },
     ],

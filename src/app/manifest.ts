@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Capacitación · CO Politica Centro",
     short_name: "Capacitación Centro",
     description:
-      "Escuela abierta de CO Politica Centro: concientización política y formación práctica.",
+      "Aprende política con rutas guiadas: concientización y formación práctica para actuar en Colombia.",
     start_url: "/",
     display: "standalone",
     background_color: "#f7f4ec",
