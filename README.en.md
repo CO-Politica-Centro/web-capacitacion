@@ -26,7 +26,7 @@ CO Politica Centro platform at [web-capacitacion-co-politica.vercel.app](https:/
   </a>
 </p>
 
-## ✨ Features
+## Features
 
 - Awareness and practical-training tracks.
 - Courses, lessons, and a resource library.
@@ -35,13 +35,13 @@ CO Politica Centro platform at [web-capacitacion-co-politica.vercel.app](https:/
 > [!NOTE]
 > Without `NEXT_PUBLIC_FIREBASE_*` the site still opens. Only sign-in and progress turn off.
 
-## 🛠️ Tech stack
+## Tech stack
 
 - **Next.js, React, and Tailwind** — the platform.
 - **Firebase** — session and lesson progress.
 - **pnpm 11.1.1** — Node 22 or newer.
 
-## 🚀 Quick start
+## Quick start
 
 ```bash
 pnpm install
@@ -52,20 +52,20 @@ pnpm dev
 > [!IMPORTANT]
 > `pnpm run ci` is the full check: lint, types, format, tests, and build.
 
-## 📖 Usage
+## Usage
 
 The public routes are `/`, `/via/[via]`, `/ruta/[via]`, `/cursos/[slug]`, and `/recursos`. The account lives at `/cuenta/entrar`.
 
 > [!TIP]
 > `pnpm test` is enough for the suite. Firebase is not required.
 
-## 🤝 Contributing
+## Contributing
 
 Repository of [CO Politica Centro](https://github.com/CO-Politica-Centro).
 
 > [!WARNING]
 > Do not commit `.env.local`.
 
-## 📄 License
+## License
 
 This repository does not include a license file.
