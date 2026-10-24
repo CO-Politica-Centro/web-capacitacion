@@ -1,70 +1,71 @@
-# web-capacitacion
+<p align="center">
+  <a href="README.md">Español</a> · <a href="README.en.md">English</a>
+</p>
 
-Plataforma de **capacitación política** de CO Politica Centro: dos vías (concientización y formación práctica), rutas guiadas, cursos, recursos y progreso opcional con cuenta.
+<h1 align="center">Capacitación</h1>
 
-## Stack
+<p align="center">
+  <img src="public/brand/og-social.jpg" alt="Imagen de marca de Capacitación, crema, oro y verde" width="100%">
+</p>
 
-- Next.js 16 (App Router) + React 19 + TypeScript
-- Tailwind CSS v4
-- Firebase Auth + Firestore (progreso de lecciones)
-- `react-markdown` para lecciones y recursos
-- Vitest, ESLint, Prettier, react-doctor
-- Vercel Analytics
-- GitHub Actions CI
+<p align="center">Dos vías de formación política, con progreso si hay cuenta.</p>
 
-## Desarrollo
+Plataforma de CO Politica Centro en [web-capacitacion-co-politica.vercel.app](https://web-capacitacion-co-politica.vercel.app). Sin Firebase el contenido público sigue abierto.
+
+<p align="center">
+  <a href="https://github.com/CO-Politica-Centro/web-capacitacion/actions/workflows/ci.yml"><img src="https://github.com/CO-Politica-Centro/web-capacitacion/actions/workflows/ci.yml/badge.svg" alt="Estado de CI"></a>
+</p>
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,firebase,pnpm&theme=dark&perline=6">
+      <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,firebase,pnpm&theme=light&perline=6">
+      <img alt="Next.js, React, TypeScript, Tailwind, Firebase, pnpm" src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,firebase,pnpm&perline=6">
+    </picture>
+  </a>
+</p>
+
+## ✨ Características
+
+- Vías de concientización y formación práctica.
+- Cursos, lecciones y biblioteca de recursos.
+- Progreso opcional con Firebase. CI y `pnpm test`.
+
+> [!NOTE]
+> Sin `NEXT_PUBLIC_FIREBASE_*` la web abre igual. Solo se apagan la sesión y el progreso.
+
+## 🛠️ Tecnologías
+
+- **Next.js, React y Tailwind** — la plataforma.
+- **Firebase** — sesión y progreso de lecciones.
+- **pnpm 11.1.1** — Node 22 o superior.
+
+## 🚀 Inicio rápido
 
 ```bash
 pnpm install
 cp .env.example .env.local
-# Completa NEXT_PUBLIC_FIREBASE_* en .env.local
 pnpm dev
 ```
 
-Sin variables Firebase la web funciona igual (contenido público); solo se desactiva iniciar sesión y guardar progreso.
+> [!IMPORTANT]
+> `pnpm run ci` es el chequeo completo: lint, tipos, formato, pruebas y build.
 
-## Scripts
+## 📖 Uso
 
-| Script              | Descripción                              |
-| ------------------- | ---------------------------------------- |
-| `pnpm dev`          | Servidor local                           |
-| `pnpm run ci`       | Lint + typecheck + format + test + build |
-| `pnpm react:doctor` | Análisis React Doctor                    |
+Las rutas públicas son `/`, `/via/[via]`, `/ruta/[via]`, `/cursos/[slug]` y `/recursos`. La cuenta vive en `/cuenta/entrar`.
 
-## Rutas
+> [!TIP]
+> `pnpm test` basta para la suite. No hace falta Firebase.
 
-- `/` — elección de vía
-- `/via/[via]` — hub de vía (`concientizacion` \| `practica`)
-- `/ruta/[via]` — itinerario paso a paso (también `/ruta?via=` redirige)
-- `/cursos/[slug]` — detalle del curso
-- `/cursos/[slug]/[leccion]` — lección (marcar progreso si hay sesión)
-- `/recursos` — biblioteca (`?tipo=` / `?via=` / `?rama=`)
-- `/cuenta/entrar` · `/cuenta/registro` · `/cuenta/progreso`
+## 🤝 Contribuir
 
-## Auth y progreso
+Repositorio de [CO Politica Centro](https://github.com/CO-Politica-Centro).
 
-- Contenido **siempre legible sin sesión**.
-- Con cuenta (email + contraseña): marcar lecciones completadas; ver barras en ruta y resumen en `/cuenta/progreso`.
-- Firestore: colección `capacitacionUsers/{uid}/lessonProgress/{curso__leccion}`.
-- Variables: ver `.env.example`. En Vercel, configura las mismas `NEXT_PUBLIC_FIREBASE_*`.
-- Dominios autorizados en Firebase Auth Console: `localhost` y el dominio de producción.
+> [!WARNING]
+> No subas `.env.local`.
 
-## Contenido
+## 📄 Licencia
 
-Los datos viven en `src/content/` (vías, ramas, cursos, recursos, lecciones). Los helpers están en `src/lib/content.ts`.
-
-### Cómo añadir una lección a un curso publicado
-
-1. Añade o ajusta la entrada en `src/content/cursos.ts` (`leccionesMeta` + `status: "publicado"`).
-2. Crea o edita `src/content/lecciones/<curso-slug>.ts` exportando el array de lecciones.
-3. Registra el array en `leccionesByCurso` dentro de `src/lib/content.ts` si es un curso nuevo.
-4. Corre `pnpm test` y `pnpm build`.
-
-## Despliegue (Vercel)
-
-- Producción actual: https://web-capacitacion-co-politica.vercel.app
-- Proyecto: `web-capacitacion-co-politica` (team Fravelz)
-
-Para deploys automáticos desde GitHub, instala la [GitHub App de Vercel](https://github.com/apps/vercel) en la org `CO-Politica-Centro` y vincula este repo en Project → Settings → Git.
-
-Dominio custom: Project → Settings → Domains.
+Este repositorio no incluye un archivo de licencia.
